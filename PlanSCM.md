@@ -2,7 +2,7 @@
 
 > **Objetivo**: mantener todo el material de cursada **ordenado, trazable y fácil de encontrar**.
 >
-> Este README define **dónde va cada cosa**, **cómo se nombra**, **cómo se versiona** y **cómo trabajamos con Git**.
+> Este README define **dónde va cada archivo relacionado con la materia**, **cómo se nombra**, **cómo se versiona** y **cómo trabajamos con Git**.
 
 ---
 
