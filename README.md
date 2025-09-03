@@ -6,7 +6,7 @@
 
 Nombre enunciados trabajos prácticos:
 
-	descripción.pdf
+	Descripción.pdf
 
 Ubicación: InstanciasEvaluativas/TrabajosPracticos/TrabajoPractico{numeroDeTrabajoPractico}/Enunciados/
 
@@ -14,7 +14,7 @@ Ubicación: InstanciasEvaluativas/TrabajosPracticos/TrabajoPractico{numeroDeTrab
 
 Nombre correcciones trabajos prácticos:
 
-	descripción.pdf
+	Descripción.pdf
 
 Ubicación: InstanciasEvaluativas/TrabajosPracticos/TrabajoPractico{numeroDeTrabajoPractico}/Correcciones/
 
@@ -22,7 +22,7 @@ Ubicación: InstanciasEvaluativas/TrabajosPracticos/TrabajoPractico{numeroDeTrab
 
 Nombre templates trabajos prácticos:
 
-	descripción.pdf
+	Descripción.pdf
 
 Ubicación: InstanciasEvaluativas/TrabajosPracticos/TrabajoPractico{numeroDeTrabajoPractico}/Templates/
 
@@ -32,7 +32,7 @@ Ubicación: InstanciasEvaluativas/TrabajosPracticos/TrabajoPractico{numeroDeTrab
 
 Nombre entregas trabajos prácticos:
 
- 	descripción.pdf
+ 	Descripción.pdf
 
 Ubicación: InstanciasEvaluativas/TrabajosPracticos/TrabajoPractico{numeroDeTrabajoPractico}/Entregas/
 
@@ -48,7 +48,7 @@ Parciales
 
 Nombre enunciado
 
-	descripcion.pdf
+	Descripcion.pdf
 
 Ubicación: InstanciasEvaluativas/Parciales/Parcial{numeroParcial}/Enunciados/
 
@@ -56,7 +56,7 @@ Ubicación: InstanciasEvaluativas/Parciales/Parcial{numeroParcial}/Enunciados/
 
 Nombre correcciones
 
- 	descripcion.pdf
+ 	Descripcion.pdf
 
 Ubicación: InstanciasEvaluativas/Parciales/Parcial{numeroParcial}/Correcciones/
 
@@ -64,7 +64,7 @@ Ubicación: InstanciasEvaluativas/Parciales/Parcial{numeroParcial}/Correcciones/
 
 Nombre templates
 
- 	descripcion.pdf
+ 	Descripcion.pdf
 
 Ubicación: InstanciasEvaluativas/Parciales/Parcial{numeroParcial}/Templates/
 
@@ -81,7 +81,7 @@ Resumen
 ubicación: Apuntes/Resumenes/
 
 Presentaciones
-	Presentacion{numeroPresentacion}_descricion.pdf
+	Presentacion{numeroPresentacion}_Descricion.pdf
 Ubicación: Apuntes/Presentaciones/
 
 Mapas Conceptuales:
@@ -89,7 +89,7 @@ Mapas Conceptuales:
 Ubicación: Apuntes/MapasConceptuales/
 
 Ejercicios resultos:
-	descripcion.pdf
+	Descripcion.pdf
 Ubicación: Apuntes/EjerciciosResuletos/Unidad{NumeroUnidad}
 
 
@@ -99,11 +99,11 @@ Ubicación: Apuntes/EjerciciosResuletos/Unidad{NumeroUnidad}
 Bibliografía 
 
 Libros 
-	nombreLibro.pdf
+	NombreLibro.pdf
 Ubicación: Bibliografía/Libros/
 
 Articulos
-	nombreArticulo.pdf
+	NombreArticulo.pdf
 Ubicación: Bibliografía/Articulos/
 
 -----------------------------------------------------------------------------------------------------------------------------------------------
@@ -111,5 +111,5 @@ Ubicación: Bibliografía/Articulos/
 Otros
 
 Nombre archivo otro
-	descripcionArchivo.pdf
+	DescripcionArchivo.pdf
 Ubicación: Otros/
