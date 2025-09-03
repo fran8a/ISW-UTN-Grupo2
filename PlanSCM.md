@@ -82,12 +82,21 @@ Presentacion01_NombreDeLaPresentacion.pdf
 
 ---
 
-## 🧱 Baselines y versionado
+## 🧱 Baselines
 
-**Cuándo fijar una Baseline (BL)**
+### 📌 ¿Cuándo crear una baseline?
+- Cuando se entrega un **TP** o un **Parcial**.  
+- Cuando recibimos la **corrección/devolución** de un TP o Parcial.  
 
-* Tras corrección/devolución de **Parciales** y **TPs**.
-* Al cerrar una **Unidad** o hito de cursada (opcional).
+### 🏷️ Cómo se nombran
+Formato del **tag** en Git:
+`BL-<Tipo>-<Ident>-<Fecha>`
+
+Ejemplos:
+- BL-TP1-Entrega-2025-05-01
+- BL-TP1-Correccion-2025-05-20
+- BL-Parcial1-Enunciado-2025-04-10
+- BL-U01-Cierre-2025-04-30
 
 ---
 
