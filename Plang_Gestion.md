@@ -16,7 +16,7 @@
 **📚 Materia:** Ingeniería y Calidad de Software  
 **📅 Año:** 2025  
 **🏫 Universidad:** Universidad Tecnológica Nacional, Facultad Regional Córdoba  
-**👥 Grupo:** N°12 **👥 Curso:** 4K3
+**👥 Grupo:** N°2 **👥 Curso:** 4K3
 
 **🎯 Propósito:**  
 Repositorio para consignas, trabajos prácticos y entregables desarrollados en la materia de Ingeniería y Calidad de Software.
