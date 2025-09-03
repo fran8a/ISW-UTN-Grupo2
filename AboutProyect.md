@@ -47,12 +47,6 @@ Este repositorio contiene todo el material, trabajos prácticos, proyectos y doc
 - ✅ Implementar procesos de calidad en el desarrollo
 
 
-## 📞 Contacto
-
-Para consultas o coordinación del grupo, contactar a cualquiera de los integrantes listados arriba.
-
----
-
 <div align="center">
   <strong>🎓 UTN FRC - Ingeniería y Calidad de Software 2024</strong>
   <br>
