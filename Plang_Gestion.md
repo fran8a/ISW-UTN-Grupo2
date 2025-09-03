@@ -95,7 +95,7 @@ Repositorio para consignas, trabajos prácticos y entregables desarrollados en l
 ---
 
 <div align="center">
-<sub>💻 Desarrollado  por el Grupo 2 | ISW 2025 | UTN FRC</sub>
+<sub>💻 Desarrollado por el Grupo 2 | ISW 2025 | UTN FRC</sub>
 </div>
 
 </div>
