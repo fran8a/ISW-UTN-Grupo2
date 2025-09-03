@@ -15,18 +15,22 @@
 
 ## 👥 Integrantes del Grupo 2
 
+<div align="center">
+
 | Nombre | Legajo |
 |--------|--------|
+| 👨‍💻 Almada, Santiago | 94498 |
+| 👨‍💻 Avila Molina, Dimas | 94524 |
+| 👨‍💻 Jiménez, Gustavo Martín | 94662 |
+| 👨‍💻 Majlis, Gonzalo | 95047 |
+| 👨‍💻 Méndez, Guido | 96910 |
 | 👨‍💻 Morinigo, Tomás | 95639 |
-| 👨‍💻 Ochoa, Francisco | 96065 |
 | 👨‍💻 Negrelli, Matías Nahuel | 97616 |
+| 👨‍💻 Ochoa, Francisco | 96065 |
 | 👨‍💻 Tealdi, Tomás | 95860 |
 | 👨‍💻 Torres, Daniele Fabrizio | 94231 |
-| 👨‍💻 Avila Molina, Dimas | 94524 |
-| 👨‍💻 Méndez, Guido | 96910 |
-| 👨‍💻 Jiménez, Gustavo Martín | 94662 |
-| 👨‍💻 Almada, Santiago | 94498 |
-| 👨‍💻 Majlis, Gonzalo | 95047 |
+
+</div>
 
 ---
 
