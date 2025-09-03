@@ -8,7 +8,7 @@ Nombre enunciados trabajos prácticos:
 
 	descripción.pdf
 
-Ubicación: InstanciasEvaluativas/TrabajosPracticos/TrabajoPractico<numeroDeTrabajoPractico>/Enunciados/
+Ubicación: InstanciasEvaluativas/TrabajosPracticos/TrabajoPractico{numeroDeTrabajoPractico}/Enunciados/
 
 
 
@@ -16,7 +16,7 @@ Nombre correcciones trabajos prácticos:
 
 	descripción.pdf
 
-Ubicación: InstanciasEvaluativas/TrabajosPracticos/TrabajoPractico<numeroDeTrabajoPractico>/Correcciones/
+Ubicación: InstanciasEvaluativas/TrabajosPracticos/TrabajoPractico{numeroDeTrabajoPractico}/Correcciones/
 
 
 
@@ -24,7 +24,7 @@ Nombre templates trabajos prácticos:
 
 	descripción.pdf
 
-Ubicación: InstanciasEvaluativas/TrabajosPracticos/TrabajoPractico<numeroDeTrabajoPractico>/Templates/
+Ubicación: InstanciasEvaluativas/TrabajosPracticos/TrabajoPractico{numeroDeTrabajoPractico}/Templates/
 
 
 
@@ -34,7 +34,7 @@ Nombre entregas trabajos prácticos:
 
  	descripción.pdf
 
-Ubicación: InstanciasEvaluativas/TrabajosPracticos/TrabajoPractico<numeroDeTrabajoPractico>/Entregas/
+Ubicación: InstanciasEvaluativas/TrabajosPracticos/TrabajoPractico{numeroDeTrabajoPractico}/Entregas/
 
 
 
@@ -50,7 +50,7 @@ Nombre enunciado
 
 	descripcion.pdf
 
-Ubicación: InstanciasEvaluativas/Parciales/Parcial<numeroParcial>/Enunciados/
+Ubicación: InstanciasEvaluativas/Parciales/Parcial{numeroParcial}/Enunciados/
 
 
 
@@ -58,7 +58,7 @@ Nombre correcciones
 
  	descripcion.pdf
 
-Ubicación: InstanciasEvaluativas/Parciales/Parcial<numeroParcial>/Correcciones/
+Ubicación: InstanciasEvaluativas/Parciales/Parcial{numeroParcial}/Correcciones/
 
 
 
@@ -66,7 +66,7 @@ Nombre templates
 
  	descripcion.pdf
 
-Ubicación: InstanciasEvaluativas/Parciales/Parcial<numeroParcial>/Templates/
+Ubicación: InstanciasEvaluativas/Parciales/Parcial{numeroParcial}/Templates/
 
 
 
@@ -77,20 +77,20 @@ Ubicación: InstanciasEvaluativas/Parciales/Parcial<numeroParcial>/Templates/
 Apuntes
 
 Resumen
-	Descripcion_Parcial<numeroParcial>.pdf
+	Descripcion_Parcial{numeroParcial}.pdf
 ubicación: Apuntes/Resumenes/
 
 Presentaciones
-	Presentacion<numeroPresentacion>_descricion.pdf
+	Presentacion{numeroPresentacion}_descricion.pdf
 Ubicación: Apuntes/Presentaciones/
 
 Mapas Conceptuales:
-	Descripcion_Parcial<NumeroParcial>.pdf
+	Descripcion_Parcial{NumeroParcial}.pdf
 Ubicación: Apuntes/MapasConceptuales/
 
 Ejercicios resultos:
 	descripcion.pdf
-Ubicación: Apuntes/EjerciciosResuletos/Unidad<NumeroUnidad>
+Ubicación: Apuntes/EjerciciosResuletos/Unidad{NumeroUnidad}
 
 
 
