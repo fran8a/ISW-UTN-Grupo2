@@ -95,9 +95,7 @@ Formato del **tag** en Git:
 Ejemplos:
 - BL-TP1-Entrega-2025-05-01
 - BL-TP1-Correccion-2025-05-20
-- BL-Parcial1-Enunciado-2025-04-10
-- BL-U01-Cierre-2025-04-30
-
+- BL-TP2-Entrega-2025-04-10
 ---
 
 ## Items de Configuración
