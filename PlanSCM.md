@@ -10,8 +10,8 @@
 ## 🗂️ Estructura del repositorio
 
 ```text
-/APUNTES
-	/EJERCICIOSRESUELTOS
+/Apuntes
+	/EjerciciosResueltos
 		/Unidad1
 		/UnidadN
 	/MapasConceptuales
@@ -63,7 +63,7 @@ Presentacion01_NombreDeLaPresentacion.pdf
 
 ## 🗺️ Dónde va cada tipo de archivo
 
-* **Apuntes** → `APUNTES/`
+* **Apuntes** → `Apuntes/`
 
   * **Ejercicios resueltos** por unidad → `Apuntes/EjerciciosResueltos/Unidad<N>/`
   * **Mapas conceptuales** → `Apuntes/MapasConceptuales/`
@@ -88,6 +88,31 @@ Presentacion01_NombreDeLaPresentacion.pdf
 
 * Tras corrección/devolución de **Parciales** y **TPs**.
 * Al cerrar una **Unidad** o hito de cursada (opcional).
+
+---
+
+## Items de Configuración
+
+1. Trabajos prácticos (TPs)
+	- Archivos entregables (Word, PDF)
+	- Enunciados.
+	- Correcciones recibidas de la cátedra.
+2. Parciales y recuperatorios
+	- Enunciados de cada parcial.
+	- Resoluciones propias (lo que el grupo hizo).
+	- Correcciones o devoluciones de los docentes
+3. Apuntes de clase
+	- Resúmenes propios.
+	- Diapositivas entregadas por los profesores.
+	- Esquemas, mapas conceptuales o notas colaborativas.
+4. Bibliografía y material de estudio
+	- Libros en PDF.
+	- Artículos recomendados.
+	- Guías de lectura.
+5. Reglamento académico y planificación de cursado
+	- Cronograma de la materia.
+	- Programa oficial de la asignatura.
+	- Reglas de evaluación (notas mínimas, porcentajes).
 
 ---
 
