@@ -1,7 +1,7 @@
 # 🎯 Ingeniería y Calidad de Software - Grupo 2
 
 <div align="center">
-  <img src="https://www.frc.utn.edu.ar/images/logo-utn.png" alt="UTN Logo" width="200"/>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/67/UTN_logo.jpg" alt="UTN Logo" width="200"/>
   
   **Universidad Tecnológica Nacional**  
   **Facultad Regional Córdoba**
