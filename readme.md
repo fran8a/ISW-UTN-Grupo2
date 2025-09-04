@@ -8,7 +8,7 @@
   
   ### 📚 Ingeniería y Calidad de Software
   **Curso:** 4K3  
-  **Año:** 2024
+  **Año:** 2025
 </div>
 
 ---
@@ -48,7 +48,7 @@ Este repositorio contiene todo el material, trabajos prácticos, proyectos y doc
 
 
 <div align="center">
-  <strong>🎓 UTN FRC - Ingeniería y Calidad de Software 2024</strong>
+  <strong>🎓 UTN FRC - Ingeniería y Calidad de Software 2025</strong>
   <br>
   <em>Grupo 2 - Curso 4K3</em>
 </div>
