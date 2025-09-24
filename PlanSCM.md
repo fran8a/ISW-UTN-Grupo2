@@ -12,7 +12,6 @@
 ```text
 /Apuntes
 	/EjerciciosResueltos
-		/Unidad1
 		/UnidadN
 	/MapasConceptuales
 	/Presentaciones
@@ -22,19 +21,16 @@
 	/Libros
 /InstanciasEvaluativas
 	/Parciales
-		/Parcial1
 		/ParcialN
 			/Correcciones
 			/Enunciados
 			/Templates
 	/TrabajosPracticos
-		/TrabajoPractico1
 		/TrabajoPracticoN
 			/Correcciones
 			/Entregas
 			/Enunciados
 			/Templates
-/Otros
 ```
 
 ---
@@ -44,19 +40,45 @@
 **Principios**
 
 * Los archivos deben nombrarse de forma descriptiva, evitando nombres genéricos como documento1.pdf o resumen.docx.*
-* Evitar espacios y tildes. Usar PascalCase junto con snake-case para presentaciones y resumenes.
+* Se usan guiones bajos "_" para separar secciones principales (tipo, unidad, tema, autor).
+* Los tipos (RES, PRES, MAP, ENUN, EJ) y las instancias (U1, TP2, PAR1) van en MAYÚSCULAS.
+* El Tema se escribe en PascalCase si es una frase (ej: UserStories), o en mayúsculas si es una sigla (ej: SCM, UML).
 
 **Formato general**
 
 ```text
-<Tema|Descripcion><ext>
+<Tipo>_<Unidad|Parcial|TP><N>_<Tema>_<Autor>.<ext>
 ```
 
-**Ejemplos rápidos**
+Donde:
+- Tipo → indica qué es el archivo:
+	- RES → Resumen
+	- PRES → Presentación
+	- MAP → Mapa conceptual
+	- ENUN → Enunciado
+	- EJ → Ejercicio resuelto
+- Unidad|Parcial|TP\<N> → número de la unidad, parcial o trabajo práctico.
+- Tema → breve descripción (SCRUM, SCM, user-stories, etc.).
+- Autor → si aplica (ej: si cada integrante sube su versión).
+- ext → extensión (pdf, docx, pptx, etc.).
+
+
+**📂 Ejemplos de nombrado**
 
 ```text
-ResumenSCMTomasTealdi.pdf
-Presentacion01_NombreDeLaPresentacion.pdf
+Resumen de Unidad 1 sobre SCM hecho por Tomas Tealdi
+
+- RES_U1_SCM_TomasTealdi.pdf
+
+
+Presentación de Unidad 3 sobre User Stories
+
+- PRES_U3_UserStories.pptx
+
+
+Enunciado del Trabajo Práctico 2 sobre Scrum
+
+- ENUN_TP2_Scrum.docx
 ```
 
 ---
@@ -77,7 +99,6 @@ Presentacion01_NombreDeLaPresentacion.pdf
 
   * Parciales (enunciados, correcciones, templates) → `InstanciasEvaluativas/Parciales/Parcial<N>/...`
   * Trabajos Prácticos (enunciados, entregas, correcciones, templates) → `InstanciasEvaluativas/TrabajosPracticos/TrabajoPractico<N>/...`
-* **Otros** → `Otros/`
 
 
 ---
@@ -85,8 +106,7 @@ Presentacion01_NombreDeLaPresentacion.pdf
 ## 🧱 Baselines
 
 ### 📌 ¿Cuándo crear una baseline?
-- Cuando se entrega un **TP** o un **Parcial**.  
-- Cuando recibimos la **corrección/devolución** de un TP o Parcial.  
+- Cuando se entrega un **TP**.  
 
 ### 🏷️ Cómo se nombran
 Formato del **tag** en Git:
@@ -94,7 +114,6 @@ Formato del **tag** en Git:
 
 Ejemplos:
 - BL-TP1-Entrega-2025-05-01
-- BL-TP1-Correccion-2025-05-20
 - BL-TP2-Entrega-2025-04-10
 ---
 
@@ -129,19 +148,19 @@ Ejemplos:
 
 | Prefijo     | Uso                                         | Ejemplo                                                     |
 | ----------- | ------------------------------------------- | ----------------------------------------------------------- |
-| `docs/`     | Altas/cambios en documentación              | `docs/agregar RES_Parcial2_Algoritmos_2025.pdf` |
-| `fix/`      | Correcciones de nombres, typos, links       | `fix/corregir nombre de entrega`                      |
-| `feat/`     | Plantillas, scripts de apoyo                | `feat/agregar TP1_TMP_PlantillaInforme.docx`    |
-| `refactor/` | Reorganizar sin cambiar contenido académico | `refactor/separar U01 y U02`                      |
+| `docs:`     | Altas/cambios en documentación              | `docs: agregar RES_Parcial2_Algoritmos_2025.pdf` |
+| `fix:`      | Correcciones de nombres, typos, links       | `fix: corregir nombre de entrega`                      |
+| `feat:`     | Plantillas, scripts de apoyo                | `feat: agregar TP1_TMP_PlantillaInforme.docx`    |
+| `refactor:` | Reorganizar sin cambiar contenido académico | `refactor: separar U01 y U02`                      |
 
 **Ramas**
 
 * Base: `main`.
-* Nomenclatura: `<Prefijo>/<Descripcion tarea>`
+* Nomenclatura: `<Prefijo>/<Descripcion-tarea>`
 
-  * `docs/cambio fechas`
-  * `docs/agrego enunciados`
-  * `fix/renombre resumen p1`
+  * `docs/cambio-fechas`
+  * `docs/agrego-enunciados`
+  * `fix/renombre-resumen-p1`
 
 **Pull Requests**
 
