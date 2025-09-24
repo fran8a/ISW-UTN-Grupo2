@@ -32,6 +32,7 @@
 			/Enunciados
 			/Templates
 ```
+Donde N es el número de TP, Parcial o Unidad.
 
 ---
 
