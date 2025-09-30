@@ -118,12 +118,13 @@ Formato del **tag** en Git:
 `BL-<Tipo>-<Ident>-<Fecha>`
 
 Ejemplos:
-- BL-TP1-Entrega-dd-mm-yyyy
-- BL-TP2-Entrega-01-04-2025
+- BL-TP1-Entrega-YYYY-mm-dd
+- BL-TP1-Entrega-2025-05-01
+- BL-TP2-Entrega-2025-04-10
 
-dd: dia
+YYYY: año
 mm: mes
-yyyy: año
+dd: dia
 ---
 
 ## Items de Configuración
