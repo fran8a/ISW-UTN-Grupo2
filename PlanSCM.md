@@ -42,7 +42,11 @@ Donde N es el número de TP, Parcial o Unidad.
 
 * Los archivos deben nombrarse de forma descriptiva, evitando nombres genéricos como documento1.pdf o resumen.docx.*
 * Se usan guiones bajos "_" para separar secciones principales (tipo, unidad, tema, autor).
-* Los tipos (RES, PRES, MAP, ENUN, EJ) y las instancias (U1, TP2, PAR1) van en MAYÚSCULAS.
+* Los tipos (RES, PRES, MAP, ENUN, EJ) van en MAYÚSCULAS
+* Las instancias:
+*	- Unidad1, Unidad2, Unidad<N> -> N es el número de unidad
+*	- Parcial1, Parcial2, Parcial<N> -> N es el número de parcial
+*	- TP1, TP2, TP<N> -> N es el número de trabajo práctico
 * El Tema se escribe en PascalCase si es una frase (ej: UserStories), o en mayúsculas si es una sigla (ej: SCM, UML).
 
 **Formato general**
@@ -59,7 +63,7 @@ Donde:
 	- ENUN → Enunciado
 	- EJ → Ejercicio resuelto
 - Unidad|Parcial|TP\<N> → número de la unidad, parcial o trabajo práctico.
-- Tema → breve descripción (SCRUM, SCM, user-stories, etc.).
+- Tema → breve descripción (SCRUM, SCM, UserStories, etc.).
 - Autor → si aplica (ej: si cada integrante sube su versión).
 - ext → extensión (pdf, docx, pptx, etc.).
 
@@ -114,8 +118,12 @@ Formato del **tag** en Git:
 `BL-<Tipo>-<Ident>-<Fecha>`
 
 Ejemplos:
-- BL-TP1-Entrega-2025-05-01
-- BL-TP2-Entrega-2025-04-10
+- BL-TP1-Entrega-dd-mm-yyyy
+- BL-TP2-Entrega-01-04-2025
+
+dd: dia
+mm: mes
+yyyy: año
 ---
 
 ## Items de Configuración
