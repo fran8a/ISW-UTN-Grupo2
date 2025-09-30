@@ -73,12 +73,12 @@ Donde:
 ```text
 Resumen de Unidad 1 sobre SCM hecho por Tomas Tealdi
 
-- RES_U1_SCM_TomasTealdi.pdf
+- RES_Unidad1_SCM_TomasTealdi.pdf
 
 
 Presentación de Unidad 3 sobre User Stories
 
-- PRES_U3_UserStories.pptx
+- PRES_Unidad3_UserStories.pptx
 
 
 Enunciado del Trabajo Práctico 2 sobre Scrum
