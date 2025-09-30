@@ -63,6 +63,7 @@ Donde:
 	- EJ → Ejercicio resuelto
 	- BBL → Bibliografia
 	- TMP → Template
+	- CORR → Corrección (ya sea de TP, parcial, etc.) 
 - Unidad|Parcial|TP\<N> → número de la unidad, parcial o trabajo práctico.
 - Tema → breve descripción (SCRUM, SCM, UserStories, etc.).
 - Autor → si aplica (ej: si cada integrante sube su versión).
