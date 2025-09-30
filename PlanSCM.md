@@ -61,6 +61,8 @@ Donde:
 	- MAP → Mapa conceptual
 	- ENUN → Enunciado
 	- EJ → Ejercicio resuelto
+	- BBL → Bibliografia
+	- TMP → Template
 - Unidad|Parcial|TP\<N> → número de la unidad, parcial o trabajo práctico.
 - Tema → breve descripción (SCRUM, SCM, UserStories, etc.).
 - Autor → si aplica (ej: si cada integrante sube su versión).
@@ -182,6 +184,6 @@ dd: dia
 ## 🔁 Flujo de trabajo
 
 1. **Crear** rama desde `main` con el nombre indicado.
-2. **Agregar** agregar cambios y **nombrar** siguiendo la convención.
+2. **Agregar** cambios y **nombrar** siguiendo la convención.
 3. **Commit** con el prefijo y descripcion adecuada.
 4. **Push** y abrir **PR**.
