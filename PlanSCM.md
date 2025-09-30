@@ -42,7 +42,11 @@ Donde N es el número de TP, Parcial o Unidad.
 
 * Los archivos deben nombrarse de forma descriptiva, evitando nombres genéricos como documento1.pdf o resumen.docx.*
 * Se usan guiones bajos "_" para separar secciones principales (tipo, unidad, tema, autor).
-* Los tipos (RES, PRES, MAP, ENUN, EJ) y las instancias (U1, TP2, PAR1) van en MAYÚSCULAS.
+* Los tipos (RES, PRES, MAP, ENUN, EJ) van en MAYÚSCULAS
+* Las instancias:
+*	- Unidad1, Unidad2, Unidad<N> -> N es el número de unidad
+*	- Parcial1, Parcial2, Parcial<N> -> N es el número de parcial
+*	- TP1, TP2, TP<N> -> N es el número de trabajo práctico
 * El Tema se escribe en PascalCase si es una frase (ej: UserStories), o en mayúsculas si es una sigla (ej: SCM, UML).
 
 **Formato general**
@@ -59,7 +63,7 @@ Donde:
 	- ENUN → Enunciado
 	- EJ → Ejercicio resuelto
 - Unidad|Parcial|TP\<N> → número de la unidad, parcial o trabajo práctico.
-- Tema → breve descripción (SCRUM, SCM, user-stories, etc.).
+- Tema → breve descripción (SCRUM, SCM, UserStories, etc.).
 - Autor → si aplica (ej: si cada integrante sube su versión).
 - ext → extensión (pdf, docx, pptx, etc.).
 
@@ -69,12 +73,12 @@ Donde:
 ```text
 Resumen de Unidad 1 sobre SCM hecho por Tomas Tealdi
 
-- RES_U1_SCM_TomasTealdi.pdf
+- RES_Unidad1_SCM_TomasTealdi.pdf
 
 
 Presentación de Unidad 3 sobre User Stories
 
-- PRES_U3_UserStories.pptx
+- PRES_Unidad3_UserStories.pptx
 
 
 Enunciado del Trabajo Práctico 2 sobre Scrum
@@ -114,8 +118,13 @@ Formato del **tag** en Git:
 `BL-<Tipo>-<Ident>-<Fecha>`
 
 Ejemplos:
+- BL-TP1-Entrega-YYYY-mm-dd
 - BL-TP1-Entrega-2025-05-01
 - BL-TP2-Entrega-2025-04-10
+
+YYYY: año
+mm: mes
+dd: dia
 ---
 
 ## Items de Configuración
