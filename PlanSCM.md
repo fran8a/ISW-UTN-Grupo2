@@ -169,6 +169,7 @@ dd: dia
 
 * Base: `main`.
 * Nomenclatura: `<Prefijo>/<Descripcion-tarea>`
+* Los prefijos son los mismos utilizados para los commits
 
   * `docs/cambio-fechas`
   * `docs/agrego-enunciados`
