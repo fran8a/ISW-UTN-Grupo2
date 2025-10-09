@@ -61,18 +61,26 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-muted/30 to-background py-8 px-4">
+    <div className="min-h-screen b bg-gradient-to-b from-white via-[#E8FCCF] to-[#C5ED9D]  py-8 px-4">
       <div className="max-w-4xl mx-auto">
-        <header className="text-center mb-8">
-          <h1 className="text-5xl font-bold text-primary mb-3 tracking-tight">
-            EcoHarmony Park
+        <header className="text-center mb-10">
+          <div className="inline-block mb-3 px-4 py-1 bg-[#C5ED9D]/60 rounded-full">
+            <span className="md:text-sm text-xs font-medium text-[#3E8914] tracking-wide uppercase">
+              🌱 Bienvenido a la naturaleza
+            </span>
+          </div>
+          <h1 className="md:text-5xl text-4xl font-bold text-[#134611] tracking-tight">
+            EcoHarmony <span className="text-[#3DA35D]">Park</span>
           </h1>
-          <p className="text-muted-foreground text-lg">
+          {/* <p className="text-lg text-[#3E8914]/80 mt-2">
             Vive la aventura en armonía con la naturaleza
-          </p>
+          </p> */}
+          <div className="mt-4 flex justify-center">
+            <div className="h-1 w-24 bg-gradient-to-r from-[#3E8914] to-[#96E072] rounded-full"></div>
+          </div>
         </header>
 
-        <Card className="p-8 shadow-[var(--shadow-card)] border-border/50">
+        <Card className="p-8 shadow-[var(--shadow-card)] border-[#134611]/70">
           <div className="mb-8">
             <div className="flex justify-between items-center mb-2">
               <h2 className="text-2xl font-semibold text-primary">

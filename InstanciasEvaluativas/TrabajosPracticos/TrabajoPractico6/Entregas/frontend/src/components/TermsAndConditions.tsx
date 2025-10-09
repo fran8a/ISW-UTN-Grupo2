@@ -44,7 +44,7 @@ export const TermsAndConditions = ({ activity, onAccept, onBack }: TermsAndCondi
         </div>
       </div>
 
-      <Card className="p-6 bg-muted/30">
+      <Card className="p-4 md:p-6 bg-muted/30">
         <div className="flex items-center gap-2 mb-4">
           <FileText className="w-5 h-5 text-primary" />
           <h4 className="text-lg font-semibold text-primary">
