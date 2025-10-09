@@ -1,7 +1,7 @@
 import pytest
 from datetime import time
 
-from src.main import Actividad, ActividadSinCupoError, ParqueNoDisponibleError, SistemaInscripcion, TallaRequeridaError, TerminosNoAceptadosError, Visitante
+from src.model import Actividad, ActividadSinCupoError, ParqueNoDisponibleError, SistemaInscripcion, TallaRequeridaError, TerminosNoAceptadosError, Visitante
 
 
 @pytest.fixture
