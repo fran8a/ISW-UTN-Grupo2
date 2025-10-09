@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 45 20% 96%;
+    --foreground: 95 60% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 95 60% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 95 60% 15%;
+
+    --primary: 95 60% 25%;
+    --primary-foreground: 45 100% 98%;
+
+    --secondary: 35 85% 55%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 45 20% 90%;
+    --muted-foreground: 95 30% 40%;
+
+    --accent: 35 85% 55%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 45 20% 85%;
+    --input: 45 20% 85%;
+    --ring: 95 60% 25%;
+
+    --radius: 0.75rem;
+
+    --gradient-nature: linear-gradient(135deg, hsl(95 60% 25%), hsl(95 50% 35%));
+    --gradient-adventure: linear-gradient(135deg, hsl(35 85% 55%), hsl(25 90% 60%));
+    --shadow-soft: 0 4px 16px hsl(95 30% 20% / 0.1);
+    --shadow-card: 0 8px 24px hsl(95 30% 20% / 0.15);
+  }
+
+  .dark {
+    --background: 95 40% 8%;
+    --foreground: 45 100% 98%;
+
+    --card: 95 35% 12%;
+    --card-foreground: 45 100% 98%;
+
+    --popover: 95 35% 12%;
+    --popover-foreground: 45 100% 98%;
+
+    --primary: 95 50% 45%;
+    --primary-foreground: 95 60% 10%;
+
+    --secondary: 35 85% 50%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 95 30% 18%;
+    --muted-foreground: 45 20% 70%;
+
+    --accent: 35 85% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 95 30% 18%;
+    --input: 95 30% 18%;
+    --ring: 95 50% 45%;
+
+    --gradient-nature: linear-gradient(135deg, hsl(95 50% 35%), hsl(95 40% 45%));
+    --gradient-adventure: linear-gradient(135deg, hsl(35 85% 45%), hsl(25 90% 50%));
+    --shadow-soft: 0 4px 16px hsl(0 0% 0% / 0.3);
+    --shadow-card: 0 8px 24px hsl(0 0% 0% / 0.4);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
