@@ -59,7 +59,7 @@ export const DateTimeSelection = ({ activity, onSelect, onBack }: DateTimeSelect
       <Alert>
         <AlertCircle className="h-4 w-4" />
         <AlertDescription>
-          El parque permanece cerrado todos los <strong>lunes</strong>. Por favor selecciona otro día.
+          El parque permanece cerrado todos los <strong>lunes</strong>.
         </AlertDescription>
       </Alert>
 

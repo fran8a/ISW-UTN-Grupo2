@@ -4,7 +4,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card } from "@/components/ui/card";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { ArrowLeft, Plus, Trash2, Users } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
@@ -17,25 +23,39 @@ interface ParticipantsFormProps {
 
 const CLOTHING_SIZES = ["XS", "S", "M", "L", "XL", "XXL"];
 
-export const ParticipantsForm = ({ activity, availableSlots, onSubmit, onBack }: ParticipantsFormProps) => {
+export const ParticipantsForm = ({
+  activity,
+  availableSlots,
+  onSubmit,
+  onBack,
+}: ParticipantsFormProps) => {
   const { toast } = useToast();
   const [numberOfParticipants, setNumberOfParticipants] = useState<number>(1);
   const [participants, setParticipants] = useState<Participant[]>([
-    { name: "", dni: "", age: 0, clothingSize: "" }
+    { name: "", dni: "", age: 0, clothingSize: "" },
   ]);
+  const [errors, setErrors] = useState<Record<number, Record<string, string>>>(
+    {}
+  );
 
   const handleNumberChange = (value: string) => {
     const num = parseInt(value);
     if (num > 0 && num <= availableSlots) {
       setNumberOfParticipants(num);
-      const newParticipants = Array.from({ length: num }, (_, i) => 
-        participants[i] || { name: "", dni: "", age: 0, clothingSize: "" }
+      const newParticipants = Array.from(
+        { length: num },
+        (_, i) =>
+          participants[i] || { name: "", dni: "", age: 0, clothingSize: "" }
       );
       setParticipants(newParticipants);
     }
   };
 
-  const updateParticipant = (index: number, field: keyof Participant, value: string | number) => {
+  const updateParticipant = (
+    index: number,
+    field: keyof Participant,
+    value: string | number
+  ) => {
     const updated = [...participants];
     updated[index] = { ...updated[index], [field]: value };
     setParticipants(updated);
@@ -51,27 +71,69 @@ export const ParticipantsForm = ({ activity, availableSlots, onSubmit, onBack }:
 
   const addParticipant = () => {
     if (participants.length < availableSlots) {
-      setParticipants([...participants, { name: "", dni: "", age: 0, clothingSize: "" }]);
+      setParticipants([
+        ...participants,
+        { name: "", dni: "", age: 0, clothingSize: "" },
+      ]);
       setNumberOfParticipants(participants.length + 1);
     }
   };
 
   const handleSubmit = () => {
     // Validation
-    const hasEmptyFields = participants.some(p => 
-      !p.name || !p.dni || p.age === 0 || (activity.requiresClothingSize && !p.clothingSize)
+    const hasEmptyFields = participants.some(
+      (p) =>
+        !p.name ||
+        !p.dni ||
+        p.age === 0 ||
+        (activity.requiresClothingSize && !p.clothingSize)
     );
 
     if (hasEmptyFields) {
       toast({
         title: "Campos incompletos",
         description: "Por favor completa todos los datos de los participantes",
-        variant: "destructive"
+        variant: "destructive",
+      });
+      return;
+    }
+
+    const hasErrorFields = Object.values(errors).some((participantErrors) =>
+      Object.values(participantErrors).some((error) => error !== "")
+    );
+
+    if (hasErrorFields) {
+      toast({
+        title: "Errores en los campos",
+        description:
+          "Por favor corrige los errores en los datos de los participantes",
+        variant: "destructive",
       });
       return;
     }
 
     onSubmit(participants);
+  };
+
+  const validateName = (value: string) => {
+    if (!value.trim()) return "El nombre es obligatorio";
+    if (value.trim().length < 3) return "Debe tener al menos 3 caracteres";
+    if (!/^[a-zA-ZÀ-ÿ\s]+$/.test(value.trim()))
+      return "Solo se permiten letras y espacios";
+    return "";
+  };
+
+  const validateDni = (value: string) => {
+    if (!value.trim()) return "El DNI es obligatorio";
+    if (!/^\d{7,10}$/.test(value.trim()))
+      return "Debe contener entre 7 y 10 dígitos numéricos";
+    return "";
+  };
+
+  const validateAge = (value: number) => {
+    if (!value || isNaN(value)) return "La edad es obligatoria";
+    if (value < 1 || value > 120) return "Debe ser una edad válida (1–120)";
+    return "";
   };
 
   return (
@@ -85,7 +147,8 @@ export const ParticipantsForm = ({ activity, availableSlots, onSubmit, onBack }:
             Datos de los participantes
           </h3>
           <p className="text-sm text-muted-foreground">
-            Actividad: <span className="font-medium text-foreground">{activity.name}</span>
+            Actividad:{" "}
+            <span className="font-medium text-foreground">{activity.name}</span>
           </p>
         </div>
       </div>
@@ -96,12 +159,18 @@ export const ParticipantsForm = ({ activity, availableSlots, onSubmit, onBack }:
             <Users className="w-4 h-4" />
             Número de participantes
           </Label>
-          <Select value={numberOfParticipants.toString()} onValueChange={handleNumberChange}>
+          <Select
+            value={numberOfParticipants.toString()}
+            onValueChange={handleNumberChange}
+          >
             <SelectTrigger id="numParticipants" className="w-24">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              {Array.from({ length: Math.min(availableSlots, 10) }, (_, i) => i + 1).map(num => (
+              {Array.from(
+                { length: Math.min(availableSlots, 10) },
+                (_, i) => i + 1
+              ).map((num) => (
                 <SelectItem key={num} value={num.toString()}>
                   {num}
                 </SelectItem>
@@ -134,46 +203,107 @@ export const ParticipantsForm = ({ activity, availableSlots, onSubmit, onBack }:
                   <Input
                     id={`name-${index}`}
                     value={participant.name}
-                    onChange={(e) => updateParticipant(index, "name", e.target.value)}
+                    onChange={(e) =>
+                      updateParticipant(index, "name", e.target.value)
+                    }
+                    onBlur={(e) => {
+                      const error = validateName(e.target.value);
+                      setErrors((prev) => ({
+                        ...prev,
+                        [index]: {
+                          ...(prev[index] || {}),
+                          name: error,
+                        },
+                      }));
+                    }}
                     placeholder="Ej: Juan Pérez"
+                    className={errors[index]?.name ? "border-destructive" : ""}
                   />
+                  {errors[index]?.name && (
+                    <p className="text-destructive text-sm">
+                      {errors[index].name}
+                    </p>
+                  )}
                 </div>
-
-                <div className="space-y-2">
+                <div className="space-y-1">
                   <Label htmlFor={`dni-${index}`}>DNI *</Label>
                   <Input
                     id={`dni-${index}`}
                     value={participant.dni}
-                    onChange={(e) => updateParticipant(index, "dni", e.target.value)}
+                    onChange={(e) =>
+                      updateParticipant(index, "dni", e.target.value)
+                    }
+                    onBlur={(e) => {
+                      const error = validateDni(e.target.value);
+                      setErrors((prev) => ({
+                        ...prev,
+                        [index]: {
+                          ...(prev[index] || {}),
+                          dni: error,
+                        },
+                      }));
+                    }}
                     placeholder="Ej: 12345678"
+                    className={errors[index]?.dni ? "border-destructive" : ""}
                   />
+                  {errors[index]?.dni && (
+                    <p className="text-destructive text-sm">
+                      {errors[index].dni}
+                    </p>
+                  )}
                 </div>
 
-                <div className="space-y-2">
+                <div className="space-y-1">
                   <Label htmlFor={`age-${index}`}>Edad *</Label>
                   <Input
                     id={`age-${index}`}
                     type="number"
                     value={participant.age || ""}
-                    onChange={(e) => updateParticipant(index, "age", parseInt(e.target.value) || 0)}
+                    onChange={(e) =>
+                      updateParticipant(
+                        index,
+                        "age",
+                        parseInt(e.target.value) || 0
+                      )
+                    }
+                    onBlur={(e) => {
+                      const error = validateAge(parseInt(e.target.value));
+                      setErrors((prev) => ({
+                        ...prev,
+                        [index]: {
+                          ...(prev[index] || {}),
+                          age: error,
+                        },
+                      }));
+                    }}
                     placeholder="Ej: 25"
                     min="1"
                     max="120"
+                    className={errors[index]?.age ? "border-destructive" : ""}
                   />
+                  {errors[index]?.age && (
+                    <p className="text-destructive text-sm">
+                      {errors[index].age}
+                    </p>
+                  )}
                 </div>
 
                 {activity.requiresClothingSize && (
                   <div className="space-y-2">
-                    <Label htmlFor={`size-${index}`}>Talla de vestimenta *</Label>
+                    <Label htmlFor={`size-${index}`}>
+                      Talla de vestimenta *
+                    </Label>
                     <Select
                       value={participant.clothingSize}
-                      onValueChange={(value) => updateParticipant(index, "clothingSize", value)}
+                      onValueChange={(value) =>
+                        updateParticipant(index, "clothingSize", value)
+                      }
                     >
                       <SelectTrigger id={`size-${index}`}>
                         <SelectValue placeholder="Selecciona talla" />
                       </SelectTrigger>
                       <SelectContent>
-                        {CLOTHING_SIZES.map(size => (
+                        {CLOTHING_SIZES.map((size) => (
                           <SelectItem key={size} value={size}>
                             {size}
                           </SelectItem>
@@ -188,11 +318,7 @@ export const ParticipantsForm = ({ activity, availableSlots, onSubmit, onBack }:
         </div>
 
         {participants.length < availableSlots && (
-          <Button
-            variant="outline"
-            className="w-full"
-            onClick={addParticipant}
-          >
+          <Button variant="outline" className="w-full" onClick={addParticipant}>
             <Plus className="w-4 h-4 mr-2" />
             Agregar participante
           </Button>

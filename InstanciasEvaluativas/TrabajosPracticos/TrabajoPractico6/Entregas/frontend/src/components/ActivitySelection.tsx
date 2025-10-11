@@ -11,40 +11,41 @@ const ACTIVITIES: Activity[] = [
   {
     id: "tirolesa",
     name: "Tirolesa",
-    description: "Deslízate a través del dosel del bosque con vistas espectaculares",
+    description:
+      "Deslízate a través del dosel del bosque con vistas espectaculares",
     requiresClothingSize: true,
     availableSlots: 8,
     availableTimes: [
       { time: "09:00", availableSlots: 2 },
       { time: "11:00", availableSlots: 2 },
       { time: "14:00", availableSlots: 2 },
-      { time: "16:00", availableSlots: 2 }
+      { time: "16:00", availableSlots: 2 },
     ],
     terms: [
       "Peso máximo permitido: 120kg",
-      "Edad mínima: 12 años",
       "Uso obligatorio de equipo de seguridad proporcionado",
-      "No está permitido si tienes problemas cardíacos o vértigo severo"
-    ]
+      "No está permitido si tienes problemas cardíacos o vértigo severo",
+    ],
   },
   {
     id: "safari",
     name: "Safari",
-    description: "Explora la fauna local en un recorrido guiado por expertos naturalistas",
+    description:
+      "Explora la fauna local en un recorrido guiado por expertos naturalistas",
     requiresClothingSize: false,
     availableSlots: 12,
     availableTimes: [
       { time: "08:00", availableSlots: 3 },
       { time: "10:00", availableSlots: 3 },
       { time: "15:00", availableSlots: 3 },
-      { time: "17:00", availableSlots: 3 }
+      { time: "17:00", availableSlots: 3 },
     ],
     terms: [
       "Mantener silencio durante el recorrido",
       "No alimentar a los animales",
       "Seguir las instrucciones del guía en todo momento",
-      "Usar protector solar y repelente de insectos"
-    ]
+      "Usar protector solar y repelente de insectos",
+    ],
   },
   {
     id: "palestra",
@@ -56,37 +57,39 @@ const ACTIVITIES: Activity[] = [
       { time: "10:00", availableSlots: 2 },
       { time: "12:00", availableSlots: 1 },
       { time: "15:00", availableSlots: 2 },
-      { time: "17:00", availableSlots: 1 }
+      { time: "17:00", availableSlots: 1 },
     ],
     terms: [
-      "Edad mínima: 10 años",
       "Uso obligatorio de arnés y casco",
       "Firma de descargo de responsabilidad requerida",
-      "No escalar si has consumido alcohol"
-    ]
+      "No escalar si has consumido alcohol",
+    ],
   },
   {
     id: "jardineria",
     name: "Jardinería",
-    description: "Aprende sobre plantas nativas y contribuye al cuidado del parque",
+    description:
+      "Aprende sobre plantas nativas y contribuye al cuidado del parque",
     requiresClothingSize: false,
     availableSlots: 15,
     availableTimes: [
       { time: "09:00", availableSlots: 4 },
       { time: "11:00", availableSlots: 4 },
       { time: "14:00", availableSlots: 4 },
-      { time: "16:00", availableSlots: 3 }
+      { time: "16:00", availableSlots: 3 },
     ],
     terms: [
       "Traer guantes de jardinería (opcional, se proporcionan)",
       "Usar ropa cómoda que pueda ensuciarse",
       "Informar sobre alergias a plantas",
-      "Seguir las instrucciones del jardinero guía"
-    ]
-  }
+      "Seguir las instrucciones del jardinero guía",
+    ],
+  },
 ];
 
-export const ActivitySelection = ({ onSelectActivity }: ActivitySelectionProps) => {
+export const ActivitySelection = ({
+  onSelectActivity,
+}: ActivitySelectionProps) => {
   return (
     <div className="space-y-4">
       <div className="mb-6">
@@ -103,10 +106,14 @@ export const ActivitySelection = ({ onSelectActivity }: ActivitySelectionProps) 
           <Card
             key={activity.id}
             className="p-6 cursor-pointer transition-all hover:shadow-[var(--shadow-card)] hover:border-primary/50 hover:scale-[1.02]"
-            onClick={() => activity.availableSlots > 0 && onSelectActivity(activity)}
+            onClick={() =>
+              activity.availableSlots > 0 && onSelectActivity(activity)
+            }
           >
             <div className="flex justify-between items-start mb-3">
-              <h4 className="text-xl font-bold text-primary">{activity.name}</h4>
+              <h4 className="text-xl font-bold text-primary">
+                {activity.name}
+              </h4>
               {activity.availableSlots > 0 ? (
                 <Badge variant="secondary" className="flex items-center gap-1">
                   <Users className="w-3 h-3" />
