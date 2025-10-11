@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Activity } from "@/types/registration";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -10,11 +10,23 @@ interface TermsAndConditionsProps {
   activity: Activity;
   onAccept: (accepted: boolean) => void;
   onBack: () => void;
+  initialAccepted?: boolean;
+  onChange?: (accepted: boolean) => void;
 }
 
-export const TermsAndConditions = ({ activity, onAccept, onBack }: TermsAndConditionsProps) => {
+export const TermsAndConditions = ({
+  activity,
+  onAccept,
+  onBack,
+  initialAccepted,
+  onChange,
+}: TermsAndConditionsProps) => {
   const { toast } = useToast();
-  const [accepted, setAccepted] = useState(false);
+  const [accepted, setAccepted] = useState<boolean>(initialAccepted || false);
+
+  useEffect(() => {
+    setAccepted(initialAccepted || false);
+  }, [initialAccepted]);
 
   const handleContinue = () => {
     if (!accepted) {
@@ -78,10 +90,14 @@ export const TermsAndConditions = ({ activity, onAccept, onBack }: TermsAndCondi
       </Card>
 
       <div className="flex items-center space-x-2 p-4 border border-border rounded-lg bg-card">
-        <Checkbox 
-          id="terms" 
+        <Checkbox
+          id="terms"
           checked={accepted}
-          onCheckedChange={(checked) => setAccepted(checked as boolean)}
+          onCheckedChange={(checked) => {
+            const val = checked as boolean;
+            setAccepted(val);
+            if (onChange) onChange(val);
+          }}
         />
         <label
           htmlFor="terms"

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Activity } from "@/types/registration";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
@@ -14,20 +14,47 @@ interface DateTimeSelectionProps {
   activity: Activity;
   onSelect: (date: Date | undefined, time: string, availableSlots: number) => void;
   onBack: () => void;
+  // optional controlled/initial values so parent can persist state
+  selectedDate?: Date | undefined;
+  selectedTime?: string;
+  selectedSlots?: number;
+  onChange?: (date: Date | undefined, time: string, availableSlots: number) => void;
 }
 
-export const DateTimeSelection = ({ activity, onSelect, onBack }: DateTimeSelectionProps) => {
-  const [selectedDate, setSelectedDate] = useState<Date | undefined>();
-  const [selectedTime, setSelectedTime] = useState<string>("");
-  const [selectedSlots, setSelectedSlots] = useState<number>(0);
+export const DateTimeSelection = ({
+  activity,
+  onSelect,
+  onBack,
+  selectedDate: initialDate,
+  selectedTime: initialTime,
+  selectedSlots: initialSlots,
+  onChange,
+}: DateTimeSelectionProps) => {
+  const [selectedDate, setSelectedDate] = useState<Date | undefined>(initialDate);
+  const [selectedTime, setSelectedTime] = useState<string>(initialTime || "");
+  const [selectedSlots, setSelectedSlots] = useState<number>(initialSlots || 0);
+
+  // keep local state in sync with parent when props change
+  useEffect(() => {
+    setSelectedDate(initialDate);
+  }, [initialDate]);
+  useEffect(() => {
+    setSelectedTime(initialTime || "");
+  }, [initialTime]);
+  useEffect(() => {
+    setSelectedSlots(initialSlots || 0);
+  }, [initialSlots]);
 
   const handleTimeSelect = (time: string, availableSlots: number) => {
     setSelectedTime(time);
     setSelectedSlots(availableSlots);
+    if (onChange) onChange(selectedDate, time, availableSlots);
   };
 
   const handleContinue = () => {
     if (selectedDate && selectedTime) {
+      // inform parent of final selection and advance
+      if (onChange) onChange(selectedDate, selectedTime, selectedSlots);
       onSelect(selectedDate, selectedTime, selectedSlots);
     }
   };

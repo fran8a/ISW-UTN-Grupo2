@@ -19,6 +19,9 @@ interface ParticipantsFormProps {
   availableSlots: number;
   onSubmit: (participants: Participant[]) => void;
   onBack: () => void;
+  // optional controlled values
+  initialParticipants?: Participant[];
+  onChange?: (participants: Participant[]) => void;
 }
 
 const CLOTHING_SIZES = ["XS", "S", "M", "L", "XL", "XXL"];
@@ -28,12 +31,18 @@ export const ParticipantsForm = ({
   availableSlots,
   onSubmit,
   onBack,
+  initialParticipants,
+  onChange,
 }: ParticipantsFormProps) => {
   const { toast } = useToast();
-  const [numberOfParticipants, setNumberOfParticipants] = useState<number>(1);
-  const [participants, setParticipants] = useState<Participant[]>([
-    { name: "", dni: "", age: 0, clothingSize: "" },
-  ]);
+  const [numberOfParticipants, setNumberOfParticipants] = useState<number>(
+    initialParticipants?.length || 1
+  );
+  const [participants, setParticipants] = useState<Participant[]>(
+    initialParticipants && initialParticipants.length > 0
+      ? initialParticipants
+      : [{ name: "", dni: "", age: 0, clothingSize: "" }]
+  );
   const [errors, setErrors] = useState<Record<number, Record<string, string>>>(
     {}
   );
@@ -48,6 +57,7 @@ export const ParticipantsForm = ({
           participants[i] || { name: "", dni: "", age: 0, clothingSize: "" }
       );
       setParticipants(newParticipants);
+      if (onChange) onChange(newParticipants);
     }
   };
 
@@ -59,6 +69,7 @@ export const ParticipantsForm = ({
     const updated = [...participants];
     updated[index] = { ...updated[index], [field]: value };
     setParticipants(updated);
+    if (onChange) onChange(updated);
   };
 
   const removeParticipant = (index: number) => {
@@ -66,6 +77,7 @@ export const ParticipantsForm = ({
       const updated = participants.filter((_, i) => i !== index);
       setParticipants(updated);
       setNumberOfParticipants(updated.length);
+      if (onChange) onChange(updated);
     }
   };
 
@@ -76,6 +88,11 @@ export const ParticipantsForm = ({
         { name: "", dni: "", age: 0, clothingSize: "" },
       ]);
       setNumberOfParticipants(participants.length + 1);
+      if (onChange)
+        onChange([
+          ...participants,
+          { name: "", dni: "", age: 0, clothingSize: "" },
+        ] as Participant[]);
     }
   };
 

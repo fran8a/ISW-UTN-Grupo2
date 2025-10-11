@@ -32,9 +32,20 @@ const Index = () => {
     setCurrentStep(3);
   };
 
+  const handleDateTimeChange = (date: Date | undefined, time: string, availableSlots: number) => {
+    // Persist intermediate changes when user selects time/date but hasn't continued
+    setSelectedDate(date);
+    setSelectedTime(time);
+    setSelectedTimeSlots(availableSlots);
+  };
+
   const handleParticipantsSubmit = (participantsList: Participant[]) => {
     setParticipants(participantsList);
     setCurrentStep(4);
+  };
+
+  const handleParticipantsChange = (participantsList: Participant[]) => {
+    setParticipants(participantsList);
   };
 
   const handleTermsAccept = (accepted: boolean) => {
@@ -42,6 +53,10 @@ const Index = () => {
     if (accepted) {
       setCurrentStep(5);
     }
+  };
+
+  const handleTermsChange = (accepted: boolean) => {
+    setTermsAccepted(accepted);
   };
 
   const handleReset = () => {
@@ -102,6 +117,10 @@ const Index = () => {
               activity={selectedActivity}
               onSelect={handleDateTimeSelect}
               onBack={handleBack}
+              selectedDate={selectedDate}
+              selectedTime={selectedTime}
+              selectedSlots={selectedTimeSlots}
+              onChange={handleDateTimeChange}
             />
           )}
 
@@ -111,6 +130,8 @@ const Index = () => {
               availableSlots={selectedTimeSlots}
               onSubmit={handleParticipantsSubmit}
               onBack={handleBack}
+              initialParticipants={participants}
+              onChange={handleParticipantsChange}
             />
           )}
 
@@ -119,6 +140,8 @@ const Index = () => {
               activity={selectedActivity}
               onAccept={handleTermsAccept}
               onBack={handleBack}
+              initialAccepted={termsAccepted}
+              onChange={handleTermsChange}
             />
           )}
 
