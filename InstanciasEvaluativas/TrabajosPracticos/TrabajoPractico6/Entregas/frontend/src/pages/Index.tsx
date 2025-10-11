@@ -10,10 +10,13 @@ import { Activity, Participant } from "@/types/registration";
 
 const Index = () => {
   const [currentStep, setCurrentStep] = useState(1);
-  const [selectedActivity, setSelectedActivity] = useState<Activity | null>(null);
+  const [selectedActivity, setSelectedActivity] = useState<Activity | null>(
+    null
+  );
   const [selectedDate, setSelectedDate] = useState<Date | undefined>();
   const [selectedTime, setSelectedTime] = useState<string>("");
   const [selectedTimeSlots, setSelectedTimeSlots] = useState<number>(0);
+  const [calendarMonth, setCalendarMonth] = useState<Date>(new Date());
   const [participants, setParticipants] = useState<Participant[]>([]);
   const [termsAccepted, setTermsAccepted] = useState(false);
 
@@ -25,18 +28,30 @@ const Index = () => {
     setCurrentStep(2);
   };
 
-  const handleDateTimeSelect = (date: Date | undefined, time: string, availableSlots: number) => {
+  const handleDateTimeSelect = (
+    date: Date | undefined,
+    time: string,
+    availableSlots: number
+  ) => {
     setSelectedDate(date);
     setSelectedTime(time);
     setSelectedTimeSlots(availableSlots);
     setCurrentStep(3);
   };
 
-  const handleDateTimeChange = (date: Date | undefined, time: string, availableSlots: number) => {
+  const handleDateTimeChange = (
+    date: Date | undefined,
+    time: string,
+    availableSlots: number
+  ) => {
     // Persist intermediate changes when user selects time/date but hasn't continued
     setSelectedDate(date);
     setSelectedTime(time);
     setSelectedTimeSlots(availableSlots);
+  };
+
+  const handleMonthChange = (month: Date) => {
+    setCalendarMonth(month);
   };
 
   const handleParticipantsSubmit = (participantsList: Participant[]) => {
@@ -65,6 +80,7 @@ const Index = () => {
     setSelectedDate(undefined);
     setSelectedTime("");
     setSelectedTimeSlots(0);
+    setCalendarMonth(new Date());
     setParticipants([]);
     setTermsAccepted(false);
   };
@@ -120,7 +136,9 @@ const Index = () => {
               selectedDate={selectedDate}
               selectedTime={selectedTime}
               selectedSlots={selectedTimeSlots}
+              currentMonth={calendarMonth}
               onChange={handleDateTimeChange}
+              onMonthChange={handleMonthChange}
             />
           )}
 

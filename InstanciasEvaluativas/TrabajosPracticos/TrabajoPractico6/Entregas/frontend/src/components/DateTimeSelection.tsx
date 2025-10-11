@@ -1,24 +1,41 @@
 import { useState, useEffect } from "react";
-import { Activity } from "@/types/registration";
+import { Activity, Horario } from "@/types/registration";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
-import { CalendarIcon, Clock, ArrowLeft, AlertCircle } from "lucide-react";
+import {
+  CalendarIcon,
+  Clock,
+  ArrowLeft,
+  AlertCircle,
+  Loader2,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import { obtenerDetalleActividad } from "@/services/service";
 
 interface DateTimeSelectionProps {
   activity: Activity;
-  onSelect: (date: Date | undefined, time: string, availableSlots: number) => void;
+  onSelect: (
+    date: Date | undefined,
+    time: string,
+    availableSlots: number
+  ) => void;
   onBack: () => void;
   // optional controlled/initial values so parent can persist state
   selectedDate?: Date | undefined;
   selectedTime?: string;
   selectedSlots?: number;
-  onChange?: (date: Date | undefined, time: string, availableSlots: number) => void;
+  currentMonth?: Date;
+  onChange?: (
+    date: Date | undefined,
+    time: string,
+    availableSlots: number
+  ) => void;
+  onMonthChange?: (month: Date) => void;
 }
 
 export const DateTimeSelection = ({
@@ -28,13 +45,22 @@ export const DateTimeSelection = ({
   selectedDate: initialDate,
   selectedTime: initialTime,
   selectedSlots: initialSlots,
+  currentMonth: initialMonth,
   onChange,
+  onMonthChange,
 }: DateTimeSelectionProps) => {
-  const [selectedDate, setSelectedDate] = useState<Date | undefined>(initialDate);
+  const [selectedDate, setSelectedDate] = useState<Date | undefined>(
+    initialDate
+  );
   const [selectedTime, setSelectedTime] = useState<string>(initialTime || "");
   const [selectedSlots, setSelectedSlots] = useState<number>(initialSlots || 0);
+  const [currentMonth, setCurrentMonth] = useState<Date>(
+    initialMonth || new Date()
+  );
+  const [availableHorarios, setAvailableHorarios] = useState<Horario[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string>("");
 
-  // keep local state in sync with parent when props change
   useEffect(() => {
     setSelectedDate(initialDate);
   }, [initialDate]);
@@ -44,6 +70,67 @@ export const DateTimeSelection = ({
   useEffect(() => {
     setSelectedSlots(initialSlots || 0);
   }, [initialSlots]);
+  useEffect(() => {
+    if (initialMonth) {
+      setCurrentMonth(initialMonth);
+    }
+  }, [initialMonth]);
+
+  const handleMonthChange = (month: Date) => {
+    setCurrentMonth(month);
+    if (onMonthChange) {
+      onMonthChange(month);
+    }
+  };
+
+  // Función para obtener horarios para una fecha específica
+  const obtenerHorariosParaFecha = async (fecha: Date) => {
+    if (!activity.id) return;
+
+    setLoading(true);
+    setError("");
+    setSelectedTime("");
+    setSelectedSlots(0);
+
+    try {
+      const detalle = await obtenerDetalleActividad(activity.id);
+      const fechaStr = format(fecha, "yyyy-MM-dd");
+
+      // Filtrar horarios para la fecha seleccionada
+      const horariosParaFecha = detalle.horarios.filter(
+        (horario) => horario.fecha === fechaStr
+      );
+
+      setAvailableHorarios(horariosParaFecha);
+
+      if (horariosParaFecha.length === 0) {
+        setError("No hay horarios disponibles para la fecha seleccionada");
+      }
+    } catch (error) {
+      console.error("Error al obtener horarios:", error);
+      setError("Error al cargar los horarios disponibles");
+      setAvailableHorarios([]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (selectedDate) {
+      obtenerHorariosParaFecha(selectedDate);
+    } else {
+      setAvailableHorarios([]);
+      setSelectedTime("");
+      setSelectedSlots(0);
+    }
+  }, [selectedDate, activity.id]);
+
+  const handleDateSelect = (date: Date | undefined) => {
+    setSelectedDate(date);
+    if (onChange && date) {
+      onChange(date, "", 0); // Reset time and slots when date changes
+    }
+  };
 
   const handleTimeSelect = (time: string, availableSlots: number) => {
     setSelectedTime(time);
@@ -64,7 +151,9 @@ export const DateTimeSelection = ({
   };
 
   const disabledDays = (date: Date) => {
-    return date < new Date() || isMonday(date);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // Reset time to start of day for accurate comparison
+    return date < today || isMonday(date);
   };
 
   return (
@@ -78,7 +167,10 @@ export const DateTimeSelection = ({
             Selecciona fecha y horario
           </h3>
           <p className="text-sm text-muted-foreground">
-            Actividad: <span className="font-medium text-foreground">{activity.name}</span>
+            Actividad:{" "}
+            <span className="font-medium text-foreground">
+              {activity.nombre}
+            </span>
           </p>
         </div>
       </div>
@@ -100,15 +192,17 @@ export const DateTimeSelection = ({
             <Calendar
               mode="single"
               selected={selectedDate}
-              onSelect={setSelectedDate}
+              onSelect={handleDateSelect}
+              month={currentMonth}
+              onMonthChange={handleMonthChange}
               disabled={disabledDays}
               locale={es}
               className={cn("pointer-events-auto")}
               modifiers={{
-                monday: (date) => isMonday(date)
+                monday: (date) => isMonday(date),
               }}
               modifiersClassNames={{
-                monday: "line-through opacity-50"
+                monday: "line-through opacity-50",
               }}
             />
           </Card>
@@ -123,23 +217,55 @@ export const DateTimeSelection = ({
             <p className="text-sm text-muted-foreground mb-3">
               Fecha seleccionada: {format(selectedDate, "PPPP", { locale: es })}
             </p>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-              {activity.availableTimes.map((timeSlot) => (
-                <Button
-                  key={timeSlot.time}
-                  variant={selectedTime === timeSlot.time ? "default" : "outline"}
-                  className="h-auto py-4"
-                  onClick={() => handleTimeSelect(timeSlot.time, timeSlot.availableSlots)}
-                >
-                  <div className="flex flex-col items-center">
-                    <span className="text-lg font-bold">{timeSlot.time}</span>
-                    <Badge variant="secondary" className="mt-1 text-xs">
-                      {timeSlot.availableSlots} cupos
-                    </Badge>
-                  </div>
-                </Button>
-              ))}
-            </div>
+
+            {loading ? (
+              <div className="flex items-center justify-center py-8">
+                <Loader2 className="w-6 h-6 animate-spin mr-2" />
+                <span>Cargando horarios disponibles...</span>
+              </div>
+            ) : error ? (
+              <Alert className="mb-4">
+                <AlertCircle className="h-4 w-4" />
+                <AlertDescription>{error}</AlertDescription>
+              </Alert>
+            ) : availableHorarios.length > 0 ? (
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                {availableHorarios.map((horario) => (
+                  <Button
+                    key={horario.id}
+                    variant={
+                      selectedTime === horario.hora ? "default" : "outline"
+                    }
+                    className="h-auto py-4"
+                    onClick={() =>
+                      handleTimeSelect(horario.hora, horario.cupos)
+                    }
+                    disabled={horario.cupos === 0}
+                  >
+                    <div className="flex flex-col items-center">
+                      <span className="text-lg font-bold">{horario.hora}</span>
+                      <Badge
+                        variant={
+                          horario.cupos === 0 ? "destructive" : "secondary"
+                        }
+                        className="mt-1 text-xs"
+                      >
+                        {horario.cupos === 0
+                          ? "Sin cupos"
+                          : `${horario.cupos} cupos`}
+                      </Badge>
+                    </div>
+                  </Button>
+                ))}
+              </div>
+            ) : (
+              <Alert>
+                <AlertCircle className="h-4 w-4" />
+                <AlertDescription>
+                  No hay horarios disponibles para esta fecha.
+                </AlertDescription>
+              </Alert>
+            )}
           </div>
         )}
       </div>

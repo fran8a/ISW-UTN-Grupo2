@@ -5,12 +5,27 @@ export interface TimeSlot {
 
 export interface Activity {
   id: string;
-  name: string;
-  description: string;
-  requiresClothingSize: boolean;
-  availableSlots: number;
-  availableTimes: TimeSlot[];
-  terms: string[];
+  nombre: string;
+  requiere_talla: number;
+  total_cupos: number;
+  total_horarios: number;
+}
+
+export interface ActivitiesDetailResponse {
+  actividad: ActivityDetail;
+  horarios: Horario[];
+}
+export interface ActivityDetail {
+  id: string;
+  nombre: string;
+  requiere_talla: number;
+}
+
+export interface Horario {
+  id: string;
+  hora: string;
+  cupos: number;
+  fecha: string;
 }
 
 export interface Participant {
