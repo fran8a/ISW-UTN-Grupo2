@@ -95,11 +95,11 @@ cursor.executemany(
 
 
 horarios_actividades = [
-    (1, 1, 5, "2023-10-01"),
-    (1, 3, 5, "2023-10-01"),
-    (2, 6, 1, "2023-10-01"),
-    (3, 2, 8, "2023-10-01"),
-    (4, 5, 10, "2023-10-01"),
+    (1, 1, 5, "2025-11-19"),
+    (1, 3, 5, "2025-10-19"),
+    (2, 6, 1, "2025-10-18"),
+    (3, 2, 8, "2025-10-18"),
+    (4, 5, 10, "2025-10-17"),
 ]
 cursor.executemany(
     "INSERT INTO horarios_x_actividades (id_actividad, id_horario, cupos, fecha) VALUES (?, ?, ?, ?)",
