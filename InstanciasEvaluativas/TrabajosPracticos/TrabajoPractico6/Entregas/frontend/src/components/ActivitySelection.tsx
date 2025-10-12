@@ -15,13 +15,20 @@ export const ActivitySelection = ({
   const [ACTIVITIES, setACTIVITIES] = useState<Activity[]>([]);
   useEffect(() => {
     const fetchActivities = async () => {
-      try {
-        const response = await obtenerActividades();
-        setACTIVITIES(response);
-      } catch (error) {
-        console.error("Error obteniendo actividades:", error);
-      }
-    };
+    try {
+      const response = await obtenerActividades();
+      const normalized = response.map((a: any) => ({
+        ...a,
+        nombre: a.nombre?.trim(), 
+        requiere_talla: a.requiere_talla === 1,
+      }));
+
+      setACTIVITIES(normalized);
+    } catch (error) {
+      console.error("Error obteniendo actividades:", error);
+    }
+  };
+
     fetchActivities();
   }, []);
 

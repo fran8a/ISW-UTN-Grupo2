@@ -147,11 +147,19 @@ export const ParticipantsForm = ({
     return "";
   };
 
-  const validateAge = (value: number) => {
-    if (!value || isNaN(value)) return "La edad es obligatoria";
-    if (value < 1 || value > 120) return "Debe ser una edad válida (1–120)";
-    return "";
-  };
+const validateAge = (value: number) => {
+  if (!value || isNaN(value)) return "La edad es obligatoria";
+
+  const activityName = activity.nombre.toLowerCase();
+  if (["palestra", "tirolesa"].includes(activityName)) {
+    if (value < 8 || value > 99)
+      return `La edad permitida para ${activityName} es entre 8 y 99 años`;
+  } else if (["safari", "jardinería"].includes(activityName)) {
+    if (value < 1 || value > 120)
+      return `La edad permitida para ${activityName} es entre 1 y 120 años`;
+  } 
+  return "";
+};
 
   return (
     <div className="space-y-6">
