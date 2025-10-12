@@ -40,7 +40,7 @@ export const ActivitySelection = ({
         {ACTIVITIES.map((activity) => (
           <Card
             key={activity.id}
-            className="p-6 cursor-pointer transition-all hover:shadow-[var(--shadow-card)] hover:border-primary/50 hover:scale-[1.02]"
+            className="p-6 cursor-pointer transition-all hover:shadow-[var(--shadow-card)] hover:border-primary/50 hover:scale-[1.02] flex flex-col justify-between min-h-[10rem]"
             onClick={() =>
               activity.total_cupos > 0 && onSelectActivity(activity)
             }
@@ -49,14 +49,6 @@ export const ActivitySelection = ({
               <h4 className="text-xl font-bold text-primary">
                 {activity.nombre}
               </h4>
-              {activity.total_cupos > 0 ? (
-                <Badge variant="secondary" className="flex items-center gap-1">
-                  <Users className="w-3 h-3" />
-                  {activity.total_cupos} cupos
-                </Badge>
-              ) : (
-                <Badge variant="destructive">Lleno</Badge>
-              )}
             </div>
 
             <div className="flex flex-wrap gap-2">
@@ -65,12 +57,14 @@ export const ActivitySelection = ({
                   Requiere talla
                 </Badge>
               )}
-              <Badge variant="outline" className="text-xs">
-                {activity.total_horarios} horarios
-              </Badge>
             </div>
+
+            <p className="text-sm text-muted-foreground my-4 flex-grow">
+              {activity.description || ""}
+            </p>
+
             {activity.total_cupos > 0 && (
-              <div className="mt-4 flex items-center text-primary text-sm font-medium">
+              <div className="mt-auto flex items-center text-primary text-sm font-medium">
                 <CheckCircle2 className="w-4 h-4 mr-1" />
                 Seleccionar
               </div>
