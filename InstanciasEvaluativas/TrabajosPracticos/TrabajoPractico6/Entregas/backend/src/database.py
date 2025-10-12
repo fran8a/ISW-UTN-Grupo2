@@ -22,7 +22,9 @@ cursor.execute("""
 CREATE TABLE IF NOT EXISTS Actividad (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     nombre TEXT UNIQUE NOT NULL,
-    requiere_talla BOOLEAN NOT NULL DEFAULT 0
+    requiere_talla BOOLEAN NOT NULL DEFAULT 0,
+    terminos_y_condiciones TEXT,
+    descripcion TEXT
 )
 """)
 
@@ -62,15 +64,16 @@ CREATE TABLE IF NOT EXISTS Inscripcion (
 )
 """)
 
+terminos = "La participación en la actividad implica el cumplimiento de las normas del parque. Se recomienda llevar vestimenta y calzado cómodos apropiados para la actividad. Los organizadores no se responsabilizan por objetos perdidos o daños personales menores. En caso de condiciones climáticas adversas, la actividad podrá ser reprogramada o cancelada. Al aceptar, autorizas el uso de imágenes en material promocional del parque."
 
 actividades = [
-    ("Tirolesa", 1),
-    ("Safari", 0),
-    ("Palestra", 1),
-    ("Jardinería", 0),
+    ("Tirolesa", 1, terminos, "Siente la libertad de volar sobre el parque en nuestra tirolesa: un recorrido lleno de adrenalina y vistas espectaculares. La actividad tiene una duración aproximada de 1 hora e incluye instrucción previa, equipo certificado y supervisión por parte de nuestro personal. Ideal para aventureros de todas las edades (consulta restricciones). ¡Reserva ya y convierte tu visita en una experiencia inolvidable!"),
+    ("Safari", 0, terminos, "Acompáñanos en un safari guiado para descubrir la fauna del parque: experiencia educativa y emocionante de aproximadamente 2 horas, con guía experto incluido. ¡Reserva tu lugar y conéctate con la naturaleza!"),
+    ("Palestra", 1, terminos, "¿Listo para escalar hacia nuevas alturas? Ven a nuestra palestra y en 1.5 horas sentirás la emoción de superar desafíos, mejorar tu técnica y celebrar cada ascenso. Equipo listo, instructores atentos y metas por alcanzar. ¡Trae a tus amigos y escalá con ganas! ¡Reserva tu turno ahora!"),
+    ("Jardinería", 0, terminos, "¿Querés ensuciarte las manos y salir con una sonrisa? Vení a nuestra sesión de jardinería: en 2 horas plantarás, aprenderás trucos de cultivo y disfrutarás del ritmo tranquilo de la naturaleza. Perfecto para desconectar, crear algo propio y volver a casa renovado. ¡Reservá tu lugar y cultivá bienestar!"),
 ]
 cursor.executemany(
-    "INSERT INTO Actividad (nombre, requiere_talla) VALUES (?, ?)",
+    "INSERT INTO Actividad (nombre, requiere_talla, terminos_y_condiciones, descripcion) VALUES (?, ?, ?, ?)",
     actividades
 )
 conn.commit()
