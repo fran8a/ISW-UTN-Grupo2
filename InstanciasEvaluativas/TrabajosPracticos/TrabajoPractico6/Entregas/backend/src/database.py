@@ -67,10 +67,10 @@ CREATE TABLE IF NOT EXISTS Inscripcion (
 terminos = "La participación en la actividad implica el cumplimiento de las normas del parque. Se recomienda llevar vestimenta y calzado cómodos apropiados para la actividad. Los organizadores no se responsabilizan por objetos perdidos o daños personales menores. En caso de condiciones climáticas adversas, la actividad podrá ser reprogramada o cancelada. Al aceptar, autorizas el uso de imágenes en material promocional del parque."
 
 actividades = [
-    ("Tirolesa", 1, terminos, "Siente la libertad de volar sobre el parque en nuestra tirolesa: un recorrido lleno de adrenalina y vistas espectaculares. La actividad tiene una duración aproximada de 1 hora e incluye instrucción previa, equipo certificado y supervisión por parte de nuestro personal. Ideal para aventureros de todas las edades (consulta restricciones). ¡Reserva ya y convierte tu visita en una experiencia inolvidable!"),
-    ("Safari", 0, terminos, "Acompáñanos en un safari guiado para descubrir la fauna del parque: experiencia educativa y emocionante de aproximadamente 2 horas, con guía experto incluido. ¡Reserva tu lugar y conéctate con la naturaleza!"),
-    ("Palestra", 1, terminos, "¿Listo para escalar hacia nuevas alturas? Ven a nuestra palestra y en 1.5 horas sentirás la emoción de superar desafíos, mejorar tu técnica y celebrar cada ascenso. Equipo listo, instructores atentos y metas por alcanzar. ¡Trae a tus amigos y escalá con ganas! ¡Reserva tu turno ahora!"),
-    ("Jardinería", 0, terminos, "¿Querés ensuciarte las manos y salir con una sonrisa? Vení a nuestra sesión de jardinería: en 2 horas plantarás, aprenderás trucos de cultivo y disfrutarás del ritmo tranquilo de la naturaleza. Perfecto para desconectar, crear algo propio y volver a casa renovado. ¡Reservá tu lugar y cultivá bienestar!"),
+    ("Tirolesa", 1, terminos, "Vuela sobre el parque en nuestra tirolesa y disfruta vistas espectaculares. La actividad dura 1 hora e incluye instrucción, equipo certificado y supervisión."),
+    ("Safari", 0, terminos, "Descubre la fauna del parque en un safari guiado de 2 horas. Incluye guía experto y una experiencia educativa y emocionante."),
+    ("Palestra", 1, terminos, "Escala en nuestra palestra y supera desafíos durante 1.5 horas. Equipo e instructores incluidos para mejorar tu técnica y celebrar cada ascenso."),
+    ("Jardinería", 0, terminos, "Participa en una sesión de jardinería de 2 horas y aprende trucos de cultivo. Disfruta del ritmo tranquilo de la naturaleza y cultiva bienestar."),
 ]
 cursor.executemany(
     "INSERT INTO Actividad (nombre, requiere_talla, terminos_y_condiciones, descripcion) VALUES (?, ?, ?, ?)",

@@ -12,7 +12,7 @@ from datetime import datetime
 
 def listar_actividades():
     cursor = database.conn.cursor()
-    cursor.execute("SELECT id, nombre, requiere_talla, SUM(cupos) as total_cupos , COUNT(*) as total_horarios FROM Actividad LEFT JOIN horarios_x_actividades ON Actividad.id = horarios_x_actividades.id_actividad GROUP BY Actividad.id")
+    cursor.execute("SELECT id, nombre, requiere_talla, SUM(cupos) as total_cupos , COUNT(*) as total_horarios, descripcion, terminos_y_condiciones FROM Actividad LEFT JOIN horarios_x_actividades ON Actividad.id = horarios_x_actividades.id_actividad GROUP BY Actividad.id")
     rows = cursor.fetchall()
     return [dict(row) for row in rows]
 
