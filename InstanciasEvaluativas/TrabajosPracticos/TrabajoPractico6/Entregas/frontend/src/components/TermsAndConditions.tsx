@@ -25,6 +25,7 @@ export const TermsAndConditions = ({
   const [accepted, setAccepted] = useState<boolean>(initialAccepted || false);
 
   useEffect(() => {
+    console.log("Initial accepted state:", activity);
     setAccepted(initialAccepted || false);
   }, [initialAccepted]);
 
@@ -74,14 +75,17 @@ export const TermsAndConditions = ({
           </p>
 
           <ul className="space-y-3">
-            {activity.terms.map((term, index) => (
-              <li key={index} className="flex gap-3">
-                <span className="text-primary font-semibold flex-shrink-0">
-                  •
-                </span>
-                <span className="text-foreground">{term}</span>
-              </li>
-            ))}
+            {activity.terminos_y_condiciones
+              .split(".")
+              .filter((term) => term.trim() !== "")
+              .map((term, index) => (
+                <li key={index} className="flex gap-3">
+                  <span className="text-primary font-semibold flex-shrink-0">
+                    •
+                  </span>
+                  <span className="text-foreground">{term.trim()}.</span>
+                </li>
+              ))}
           </ul>
 
           <div className="mt-6 p-4 bg-card rounded-lg border border-border">

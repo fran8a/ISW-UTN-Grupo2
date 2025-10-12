@@ -15,19 +15,19 @@ export const ActivitySelection = ({
   const [ACTIVITIES, setACTIVITIES] = useState<Activity[]>([]);
   useEffect(() => {
     const fetchActivities = async () => {
-    try {
-      const response = await obtenerActividades();
-      const normalized = response.map((a: any) => ({
-        ...a,
-        nombre: a.nombre?.trim(), 
-        requiere_talla: a.requiere_talla === 1,
-      }));
+      try {
+        const response = await obtenerActividades();
+        const normalized = response.map((a: any) => ({
+          ...a,
+          nombre: a.nombre?.trim(),
+          requiere_talla: a.requiere_talla === 1,
+        }));
 
-      setACTIVITIES(normalized);
-    } catch (error) {
-      console.error("Error obteniendo actividades:", error);
-    }
-  };
+        setACTIVITIES(normalized);
+      } catch (error) {
+        console.error("Error obteniendo actividades:", error);
+      }
+    };
 
     fetchActivities();
   }, []);
@@ -52,30 +52,19 @@ export const ActivitySelection = ({
               activity.total_cupos > 0 && onSelectActivity(activity)
             }
           >
-            <div className="flex justify-between items-start mb-3">
+            <div className="flex justify-between items-start mb-1">
               <h4 className="text-xl font-bold text-primary">
                 {activity.nombre}
               </h4>
-            </div>
-
-            <div className="flex flex-wrap gap-2">
               {activity.requiere_talla == 1 && (
                 <Badge variant="outline" className="text-xs">
                   Requiere talla
                 </Badge>
               )}
             </div>
-
-            <p className="text-sm text-muted-foreground my-4 flex-grow">
-              {activity.description || ""}
+            <p className="text-sm text-muted-foreground my-2 flex-grow">
+              {activity.descripcion}
             </p>
-
-            {activity.total_cupos > 0 && (
-              <div className="mt-auto flex items-center text-primary text-sm font-medium">
-                <CheckCircle2 className="w-4 h-4 mr-1" />
-                Seleccionar
-              </div>
-            )}
           </Card>
         ))}
       </div>

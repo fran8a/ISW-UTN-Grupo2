@@ -98,7 +98,6 @@ export const RegistrationSummary = ({
           <CheckCircle2 className="w-6 h-6 text-primary" />
           <h4 className="text-2xl font-bold text-primary">{activity.nombre}</h4>
         </div>
-        <p className="text-muted-foreground">{activity.description}</p>
       </div>
 
       <Card className="p-6">

@@ -1,24 +1,8 @@
 import { ActivitiesDetailResponse, Activity } from "../types/registration";
 
-// SOLO USADO EN EL MOCK
-const mockTerms = (name: string) => [
-  `La participación en "${name}" implica el cumplimiento de las normas del parque.`,
-  "Se recomienda llevar vestimenta y calzado cómodos apropiados para la actividad.",
-  "Los organizadores no se responsabilizan por objetos perdidos o daños personales menores.",
-  "En caso de condiciones climáticas adversas, la actividad podrá ser reprogramada o cancelada.",
-  "Al aceptar, autorizas el uso de imágenes en material promocional del parque.",
-];
-
 export const obtenerActividades = async (): Promise<Activity[]> => {
   const response = await fetch("/api/actividades").then((res) => res.json());
-
-  // AGREGADO DEL MOCK
-  return response.actividades.map((a: Activity) => ({
-    ...a,
-    terms: mockTerms(a.nombre),
-    // DESCRIPCION MOCK
-    description: `Disfruta de la actividad ${a.nombre} en EcoHarmony Park. Duración aproximada 1 hora.`,
-  }));
+  return response.actividades;
 };
 
 export const obtenerDetalleActividad = async (
@@ -28,17 +12,7 @@ export const obtenerDetalleActividad = async (
     res.json()
   );
 
-  // AGREGADO DEL MOCK
-  const actividad: Activity = {
-    ...response.actividad,
-    terms: mockTerms(response.actividad.nombre),
-  };
-  // FIN AGREGADO DEL MOCK
-
-  return {
-    ...response,
-    actividad,
-  };
+  return response;
 };
 
 export const inscribirActividad = async (body: any) => {
