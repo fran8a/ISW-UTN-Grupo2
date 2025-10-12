@@ -5,44 +5,76 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
-import { 
-  CheckCircle2, 
-  Calendar, 
-  Clock, 
-  Users, 
-  ArrowLeft
-} from "lucide-react";
+import { CheckCircle2, Calendar, Clock, Users, ArrowLeft } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { inscribirActividad } from "@/services/service";
+import { useState } from "react";
 
 interface RegistrationSummaryProps {
   activity: Activity;
   date: Date | undefined;
   time: string;
+  horarioId?: number | string;
   participants: Participant[];
   onBack: () => void;
   onReset: () => void;
 }
 
-export const RegistrationSummary = ({ 
-  activity, 
-  date, 
-  time, 
+export const RegistrationSummary = ({
+  activity,
+  date,
+  time,
+  horarioId,
   participants,
   onBack,
-  onReset
+  onReset,
 }: RegistrationSummaryProps) => {
   const { toast } = useToast();
+  const [loading, setLoading] = useState(false);
 
-  const handleConfirm = () => {
-    toast({
-      title: "¡Inscripción exitosa!",
-      description: `Te has inscrito correctamente a ${activity.name}. Recibirás un correo de confirmación.`,
-    });
-    
-    // Volver al menú principal después de un breve delay
-    setTimeout(() => {
-      onReset();
-    }, 2000);
+  const handleConfirm = async (horarioId?: number | string) => {
+    if (!date || !horarioId) {
+      toast({
+        title: "Datos incompletos",
+        description:
+          "Debe seleccionarse una fecha y horario antes de confirmar.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    const body = {
+      actividad_id: Number(activity.id),
+      horario_id: Number(horarioId),
+      fecha: format(date, "yyyy-MM-dd"),
+      acepta_terminos: true,
+      visitantes: participants.map((p) => ({
+        nombre: p.name,
+        dni: p.dni,
+        edad: p.age,
+        talla: p.clothingSize || null,
+      })),
+    };
+
+    setLoading(true);
+    try {
+      const result = await inscribirActividad(body);
+      toast({
+        title: "¡Inscripción exitosa!",
+        description:
+          result.message ||
+          `Te has inscrito correctamente a ${activity.nombre}.`,
+      });
+      setTimeout(() => onReset(), 500);
+    } catch (err: any) {
+      toast({
+        title: "Error en la inscripción",
+        description: err?.message || "No se pudo completar la inscripción.",
+        variant: "destructive",
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -64,7 +96,7 @@ export const RegistrationSummary = ({
       <div className="bg-gradient-to-br from-primary/10 to-accent/10 p-6 rounded-lg border-2 border-primary/20">
         <div className="flex items-center gap-2 mb-2">
           <CheckCircle2 className="w-6 h-6 text-primary" />
-          <h4 className="text-2xl font-bold text-primary">{activity.name}</h4>
+          <h4 className="text-2xl font-bold text-primary">{activity.nombre}</h4>
         </div>
         <p className="text-muted-foreground">{activity.description}</p>
       </div>
@@ -80,7 +112,9 @@ export const RegistrationSummary = ({
             <div>
               <p className="text-sm text-muted-foreground">Fecha</p>
               <p className="font-semibold">
-                {date ? format(date, "PPPP", { locale: es }) : "No seleccionada"}
+                {date
+                  ? format(date, "PPPP", { locale: es })
+                  : "No seleccionada"}
               </p>
             </div>
           </div>
@@ -97,7 +131,10 @@ export const RegistrationSummary = ({
             <Users className="w-5 h-5 text-accent" />
             <div>
               <p className="text-sm text-muted-foreground">Participantes</p>
-              <p className="font-semibold">{participants.length} persona{participants.length > 1 ? "s" : ""}</p>
+              <p className="font-semibold">
+                {participants.length} persona
+                {participants.length > 1 ? "s" : ""}
+              </p>
             </div>
           </div>
         </div>
@@ -117,9 +154,7 @@ export const RegistrationSummary = ({
                   <h5 className="font-semibold text-foreground">
                     Participante {index + 1}
                   </h5>
-                  <Badge variant="secondary">
-                    {participant.age} años
-                  </Badge>
+                  <Badge variant="secondary">{participant.age} años</Badge>
                 </div>
                 <div className="grid grid-cols-2 gap-2 text-sm">
                   <div>
@@ -144,10 +179,11 @@ export const RegistrationSummary = ({
       </Card>
 
       <div className="flex gap-3 pt-4">
-        <Button 
-          onClick={handleConfirm} 
-          size="lg" 
+        <Button
+          onClick={() => handleConfirm(horarioId)}
+          size="lg"
           className="w-full"
+          disabled={loading}
         >
           <CheckCircle2 className="w-4 h-4 mr-2" />
           Confirmar inscripción

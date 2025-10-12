@@ -103,7 +103,7 @@ export const ParticipantsForm = ({
         !p.name ||
         !p.dni ||
         p.age === 0 ||
-        (activity.requiresClothingSize && !p.clothingSize)
+        (activity.requiere_talla && !p.clothingSize)
     );
 
     if (hasEmptyFields) {
@@ -165,7 +165,9 @@ export const ParticipantsForm = ({
           </h3>
           <p className="text-sm text-muted-foreground">
             Actividad:{" "}
-            <span className="font-medium text-foreground">{activity.name}</span>
+            <span className="font-medium text-foreground">
+              {activity.nombre}
+            </span>
           </p>
         </div>
       </div>
@@ -305,7 +307,7 @@ export const ParticipantsForm = ({
                   )}
                 </div>
 
-                {activity.requiresClothingSize && (
+                {activity.requiere_talla && (
                   <div className="space-y-2">
                     <Label htmlFor={`size-${index}`}>
                       Talla de vestimenta *

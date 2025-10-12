@@ -9,6 +9,10 @@ export interface Activity {
   requiere_talla: number;
   total_cupos: number;
   total_horarios: number;
+  // optional mocked terms for the activity (frontend-only)
+  terms?: string[];
+  // optional mocked description for UI
+  description?: string;
 }
 
 export interface ActivitiesDetailResponse {

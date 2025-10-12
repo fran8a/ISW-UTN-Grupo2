@@ -16,6 +16,9 @@ const Index = () => {
   const [selectedDate, setSelectedDate] = useState<Date | undefined>();
   const [selectedTime, setSelectedTime] = useState<string>("");
   const [selectedTimeSlots, setSelectedTimeSlots] = useState<number>(0);
+  const [selectedHorarioId, setSelectedHorarioId] = useState<
+    number | string | undefined
+  >(undefined);
   const [calendarMonth, setCalendarMonth] = useState<Date>(new Date());
   const [participants, setParticipants] = useState<Participant[]>([]);
   const [termsAccepted, setTermsAccepted] = useState(false);
@@ -31,23 +34,27 @@ const Index = () => {
   const handleDateTimeSelect = (
     date: Date | undefined,
     time: string,
-    availableSlots: number
+    availableSlots: number,
+    horarioId?: number | string
   ) => {
     setSelectedDate(date);
     setSelectedTime(time);
     setSelectedTimeSlots(availableSlots);
+    setSelectedHorarioId(horarioId);
     setCurrentStep(3);
   };
 
   const handleDateTimeChange = (
     date: Date | undefined,
     time: string,
-    availableSlots: number
+    availableSlots: number,
+    horarioId?: number | string
   ) => {
     // Persist intermediate changes when user selects time/date but hasn't continued
     setSelectedDate(date);
     setSelectedTime(time);
     setSelectedTimeSlots(availableSlots);
+    setSelectedHorarioId(horarioId);
   };
 
   const handleMonthChange = (month: Date) => {
@@ -168,6 +175,7 @@ const Index = () => {
               activity={selectedActivity}
               date={selectedDate}
               time={selectedTime}
+              horarioId={selectedHorarioId}
               participants={participants}
               onBack={handleBack}
               onReset={handleReset}

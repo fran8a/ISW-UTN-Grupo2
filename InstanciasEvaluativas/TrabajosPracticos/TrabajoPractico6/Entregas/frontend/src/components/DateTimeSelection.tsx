@@ -22,7 +22,8 @@ interface DateTimeSelectionProps {
   onSelect: (
     date: Date | undefined,
     time: string,
-    availableSlots: number
+    availableSlots: number,
+    horarioId?: number | string
   ) => void;
   onBack: () => void;
   // optional controlled/initial values so parent can persist state
@@ -33,7 +34,8 @@ interface DateTimeSelectionProps {
   onChange?: (
     date: Date | undefined,
     time: string,
-    availableSlots: number
+    availableSlots: number,
+    horarioId?: number | string
   ) => void;
   onMonthChange?: (month: Date) => void;
 }
@@ -54,6 +56,9 @@ export const DateTimeSelection = ({
   );
   const [selectedTime, setSelectedTime] = useState<string>(initialTime || "");
   const [selectedSlots, setSelectedSlots] = useState<number>(initialSlots || 0);
+  const [selectedHorarioId, setSelectedHorarioId] = useState<
+    number | string | undefined
+  >(undefined);
   const [currentMonth, setCurrentMonth] = useState<Date>(
     initialMonth || new Date()
   );
@@ -127,22 +132,29 @@ export const DateTimeSelection = ({
 
   const handleDateSelect = (date: Date | undefined) => {
     setSelectedDate(date);
+    setSelectedHorarioId(undefined);
     if (onChange && date) {
-      onChange(date, "", 0); // Reset time and slots when date changes
+      onChange(date, "", 0, undefined); // Reset time and slots when date changes
     }
   };
 
-  const handleTimeSelect = (time: string, availableSlots: number) => {
+  const handleTimeSelect = (
+    time: string,
+    availableSlots: number,
+    horarioId?: number | string
+  ) => {
     setSelectedTime(time);
     setSelectedSlots(availableSlots);
-    if (onChange) onChange(selectedDate, time, availableSlots);
+    setSelectedHorarioId(horarioId);
+    if (onChange) onChange(selectedDate, time, availableSlots, horarioId);
   };
 
   const handleContinue = () => {
     if (selectedDate && selectedTime) {
       // inform parent of final selection and advance
-      if (onChange) onChange(selectedDate, selectedTime, selectedSlots);
-      onSelect(selectedDate, selectedTime, selectedSlots);
+      if (onChange)
+        onChange(selectedDate, selectedTime, selectedSlots, selectedHorarioId);
+      onSelect(selectedDate, selectedTime, selectedSlots, selectedHorarioId);
     }
   };
 
@@ -238,7 +250,7 @@ export const DateTimeSelection = ({
                     }
                     className="h-auto py-4"
                     onClick={() =>
-                      handleTimeSelect(horario.hora, horario.cupos)
+                      handleTimeSelect(horario.hora, horario.cupos, horario.id)
                     }
                     disabled={horario.cupos === 0}
                   >

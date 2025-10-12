@@ -33,7 +33,7 @@ export const TermsAndConditions = ({
       toast({
         title: "Términos y condiciones",
         description: "Debes aceptar los términos y condiciones para continuar",
-        variant: "destructive"
+        variant: "destructive",
       });
       return;
     }
@@ -51,7 +51,10 @@ export const TermsAndConditions = ({
             Términos y condiciones
           </h3>
           <p className="text-sm text-muted-foreground">
-            Actividad: <span className="font-medium text-foreground">{activity.name}</span>
+            Actividad:{" "}
+            <span className="font-medium text-foreground">
+              {activity.nombre}
+            </span>
           </p>
         </div>
       </div>
@@ -60,19 +63,22 @@ export const TermsAndConditions = ({
         <div className="flex items-center gap-2 mb-4">
           <FileText className="w-5 h-5 text-primary" />
           <h4 className="text-lg font-semibold text-primary">
-            Términos y condiciones de {activity.name}
+            Términos y condiciones de {activity.nombre}
           </h4>
         </div>
 
         <div className="space-y-3 max-h-96 overflow-y-auto pr-2">
           <p className="text-sm text-muted-foreground mb-4">
-            Por favor lee cuidadosamente los siguientes términos y condiciones antes de participar en esta actividad:
+            Por favor lee cuidadosamente los siguientes términos y condiciones
+            antes de participar en esta actividad:
           </p>
 
           <ul className="space-y-3">
             {activity.terms.map((term, index) => (
               <li key={index} className="flex gap-3">
-                <span className="text-primary font-semibold flex-shrink-0">•</span>
+                <span className="text-primary font-semibold flex-shrink-0">
+                  •
+                </span>
                 <span className="text-foreground">{term}</span>
               </li>
             ))}
@@ -80,10 +86,13 @@ export const TermsAndConditions = ({
 
           <div className="mt-6 p-4 bg-card rounded-lg border border-border">
             <p className="text-sm text-muted-foreground">
-              <strong className="text-foreground">Nota importante:</strong> Al aceptar estos términos, reconoces que has leído, 
-              comprendido y aceptas cumplir con todas las condiciones establecidas para la actividad de {activity.name}. 
-              EcoHarmony Park se reserva el derecho de negar la participación a cualquier persona que no cumpla con 
-              los requisitos o que ponga en riesgo su seguridad o la de otros participantes.
+              <strong className="text-foreground">Nota importante:</strong> Al
+              aceptar estos términos, reconoces que has leído, comprendido y
+              aceptas cumplir con todas las condiciones establecidas para la
+              actividad de {activity.nombre}. EcoHarmony Park se reserva el
+              derecho de negar la participación a cualquier persona que no
+              cumpla con los requisitos o que ponga en riesgo su seguridad o la
+              de otros participantes.
             </p>
           </div>
         </div>
@@ -103,15 +112,16 @@ export const TermsAndConditions = ({
           htmlFor="terms"
           className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"
         >
-          He leído y acepto los términos y condiciones de la actividad {activity.name}
+          He leído y acepto los términos y condiciones de la actividad{" "}
+          {activity.nombre}
         </label>
       </div>
 
       <div className="flex justify-end pt-4">
-        <Button 
-          onClick={handleContinue} 
+        <Button
+          onClick={handleContinue}
           disabled={!accepted}
-          size="lg" 
+          size="lg"
           className="min-w-[200px]"
         >
           Continuar
