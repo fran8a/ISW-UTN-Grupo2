@@ -88,6 +88,29 @@ export const DateTimeSelection = ({
     }
   };
 
+  // Función para verificar si una hora ya pasó hoy
+  const esHorarioPasado = (fecha: Date, hora: string): boolean => {
+    const hoy = new Date();
+    const fechaSeleccionada = new Date(fecha);
+    
+    // Normalizar las fechas para comparar solo día, mes y año
+    hoy.setHours(0, 0, 0, 0);
+    fechaSeleccionada.setHours(0, 0, 0, 0);
+    
+    // Si la fecha seleccionada no es hoy, no filtrar
+    if (fechaSeleccionada.getTime() !== hoy.getTime()) {
+      return false;
+    }
+    
+    // Es hoy, comparar la hora
+    const ahora = new Date();
+    const [horaStr, minutoStr] = hora.split(':');
+    const horarioDate = new Date();
+    horarioDate.setHours(parseInt(horaStr, 10), parseInt(minutoStr, 10), 0, 0);
+    
+    return horarioDate <= ahora;
+  };
+
   // Función para obtener horarios para una fecha específica
   const obtenerHorariosParaFecha = async (fecha: Date) => {
     if (!activity.id) return;
@@ -102,8 +125,13 @@ export const DateTimeSelection = ({
       const fechaStr = format(fecha, "yyyy-MM-dd");
 
       // Filtrar horarios para la fecha seleccionada
-      const horariosParaFecha = detalle.horarios.filter(
+      let horariosParaFecha = detalle.horarios.filter(
         (horario) => horario.fecha === fechaStr
+      );
+
+      // Si la fecha es hoy, filtrar horarios pasados
+      horariosParaFecha = horariosParaFecha.filter(
+        (horario) => !esHorarioPasado(fecha, horario.hora)
       );
 
       setAvailableHorarios(horariosParaFecha);
