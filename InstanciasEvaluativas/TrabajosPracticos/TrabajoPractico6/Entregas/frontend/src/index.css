@@ -1,0 +1,118 @@
+/* Inter font (Google Fonts) - used as the project's sans-serif */
+/* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap'); */
+
+/* Montserrat font (Google Fonts) */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base {
+  :root {
+    /* Palette based on provided greens:
+       #134611 (dark green)
+       #3E8914 (deep green)
+       #3DA35D (medium green)
+       #96E072 (light green)
+       #E8FCCF (very light background)
+    */
+    /* Converted to HSL for easier manipulation */
+    --bg-very-light: 86 86% 94%; /* #E8FCCF */
+    --green-dark: 137 77% 11%; /* #134611 */
+    --green-deep: 100 86% 29%; /* #3E8914 */
+  --green-mid: 132 41% 34%; /* darker variant of #3DA35D for headings */
+    --green-light: 95 76% 69%; /* #96E072 */
+
+    --background: var(--bg-very-light);
+  --foreground: 140 10% 6%; /* slightly darker near-black for headings/text */
+
+    --card: 0 0% 100%;
+    --card-foreground: var(--foreground);
+
+    --popover: 0 0% 100%;
+    --popover-foreground: var(--foreground);
+
+    --primary: var(--green-mid); /* main accent */
+  --primary-foreground: 0 0% 100%; /* white text for primary backgrounds */
+
+    --secondary: var(--green-deep);
+    --secondary-foreground: 0 0% 100%;
+
+  --muted: 120 20% 94%; /* subtle green-tinted background for muted surfaces */
+  --muted-foreground: 140 8% 50%; /* lighter muted text for placeholders and helper text */
+
+    --accent: var(--green-light);
+    --accent-foreground: 140 10% 8%;
+
+    --destructive: 0 70% 45%; /* keep red-like destructive but softer */
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 140 10% 88%;
+    --input: 140 10% 96%;
+    --ring: var(--green-mid);
+
+    --radius: 0.75rem;
+
+    --gradient-nature: linear-gradient(135deg, hsl(var(--green-deep)), hsl(var(--green-mid)));
+    --gradient-accent: linear-gradient(135deg, hsl(var(--green-mid)), hsl(var(--green-light)));
+    --shadow-soft: 0 4px 16px hsl(120 20% 10% / 0.06);
+    --shadow-card: 0 8px 24px hsl(120 20% 10% / 0.08);
+  }
+
+  .dark {
+    /* Dark mode variants using same green palette but darker surfaces */
+    --bg-very-light: 12 16% 6%; /* very dark background */
+    --green-dark: 137 77% 11%;
+    --green-deep: 100 86% 29%;
+    --green-mid: 132 41% 45%;
+    --green-light: 95 76% 69%;
+
+    --background: 12 16% 6%;
+    --foreground: 145 10% 94%;
+
+    --card: 140 10% 10%;
+    --card-foreground: 145 10% 94%;
+
+    --popover: 140 10% 10%;
+    --popover-foreground: 145 10% 94%;
+
+    --primary: 132 41% 30%; /* slightly darker primary in dark mode */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 100 86% 24%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 140 10% 12%;
+    --muted-foreground: 140 10% 60%;
+
+    --accent: 132 41% 45%;
+    --accent-foreground: 12 16% 6%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 140 10% 14%;
+    --input: 140 10% 12%;
+    --ring: 132 41% 45%;
+
+    --gradient-nature: linear-gradient(135deg, hsl(var(--green-dark)), hsl(var(--green-mid)));
+    --gradient-accent: linear-gradient(135deg, hsl(var(--green-mid)), hsl(var(--green-light)));
+    --shadow-soft: 0 4px 16px hsl(0 0% 0% / 0.45);
+    --shadow-card: 0 8px 24px hsl(0 0% 0% / 0.6);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+ body {
+   @apply bg-background text-foreground font-sans;
+   font-family: 'Montserrat', ui-sans-serif, system-ui, -apple-system,
+     "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
+     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+ }
+}
