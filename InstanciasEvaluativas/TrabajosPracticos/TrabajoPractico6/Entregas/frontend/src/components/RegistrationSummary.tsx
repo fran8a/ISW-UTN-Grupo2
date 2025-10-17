@@ -87,7 +87,7 @@ export const RegistrationSummary = ({
           <h3 className="text-xl font-semibold text-primary">
             Resumen de inscripción
           </h3>
-          <p className="text-sm text-red-500 font-bold">
+          <p className="text-md text-muted-foreground">
             Verifica los datos antes de confirmar
           </p>
         </div>
