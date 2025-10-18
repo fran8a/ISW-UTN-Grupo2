@@ -80,9 +80,9 @@ CREATE TABLE IF NOT EXISTS Inscripcion (
 terminos = "La participación en la actividad implica el cumplimiento de las normas del parque. Se recomienda llevar vestimenta y calzado cómodos apropiados para la actividad. Los organizadores no se responsabilizan por objetos perdidos o daños personales menores. En caso de condiciones climáticas adversas, la actividad podrá ser reprogramada o cancelada. Al aceptar, autorizas el uso de imágenes en material promocional del parque."
 
 actividades = [
-    ("Tirolesa", 1, terminos, "Vuela sobre el parque en nuestra tirolesa y disfruta vistas espectaculares. La actividad dura 1 hora e incluye instrucción, equipo certificado y supervisión."),
-    ("Safari", 0, terminos, "Descubre la fauna del parque en un safari guiado de 2 horas. Incluye guía experto y una experiencia educativa y emocionante."),
-    ("Palestra", 1, terminos, "Escala en nuestra palestra y supera desafíos durante 1.5 horas. Equipo e instructores incluidos para mejorar tu técnica y celebrar cada ascenso."),
+    ("Tirolesa", 1, terminos, "Vuela sobre el parque en nuestra tirolesa y disfruta las vistas espectaculares. La actividad dura 1 hora e incluye instrucción, equipo certificado y supervisión."),
+    ("Safari", 0, terminos, "Descubre la fauna del parque en un safari guiado de 2 horas. Incluye un guía experto y una experiencia educativa y emocionante."),
+    ("Palestra", 1, terminos, "Escala en nuestra palestra y supera desafíos durante 1 hora 30 min. Equipo e instructores incluidos para mejorar tu técnica y celebrar cada ascenso."),
     ("Jardinería", 0, terminos, "Participa en una sesión de jardinería de 2 horas y aprende trucos de cultivo. Disfruta del ritmo tranquilo de la naturaleza y cultiva bienestar."),
 ]
 cursor.executemany(
