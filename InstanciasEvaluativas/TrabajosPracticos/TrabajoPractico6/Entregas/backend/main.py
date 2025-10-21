@@ -13,12 +13,13 @@ from src import service
 
 app = FastAPI(title="EcoHarmonyPark", version="1.0.0")
 
+# Endpoint para listar todas las actividades disponibles
 @app.get("/actividades")
 def listar_actividades():
     actividades = service.listar_actividades()
     return {"actividades": actividades}
 
-
+# Endpoint para obtener detalles de una actividad específica
 @app.get("/actividad/{actividad_id}")
 def obtener_actividad(actividad_id: int):
     actividad = service.obtener_actividad(actividad_id)
@@ -26,7 +27,7 @@ def obtener_actividad(actividad_id: int):
         raise HTTPException(status_code=404, detail="Actividad no encontrada")
     return actividad
 
-
+# Endpoint para inscribir visitantes a una actividad
 @app.post("/inscripcion")
 def inscribir_visitante(body: InscripcionRequest):
     try:
