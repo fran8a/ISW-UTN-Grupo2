@@ -1,6 +1,6 @@
 from fastapi import FastAPI, HTTPException
 import uvicorn
-
+from fastapi.middleware.cors import CORSMiddleware
 from src.models import (
     InscripcionRequest,
     ActividadSinCupoError,
@@ -12,6 +12,14 @@ from src.models import (
 from src import service
 
 app = FastAPI(title="EcoHarmonyPark", version="1.0.0")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  
+    allow_credentials=True,
+    allow_methods=["*"],  
+    allow_headers=["*"],  
+)
 
 # Endpoint para listar todas las actividades disponibles
 @app.get("/actividades")
