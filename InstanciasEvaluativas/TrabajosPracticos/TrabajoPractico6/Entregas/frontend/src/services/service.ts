@@ -1,8 +1,8 @@
 import { ActivitiesDetailResponse, Activity } from "../types/registration";
 
-const baseURL = import.meta.env.DEV
-  ? "/api" 
-  : import.meta.env.VITE_BACKEND_URL; 
+const baseURL = import.meta.env.PROD
+  ? import.meta.env.VITE_BACKEND_URL 
+  : "/api"  ; 
 
 console.log("🌍 BaseURL usada por el front:", baseURL);
 
