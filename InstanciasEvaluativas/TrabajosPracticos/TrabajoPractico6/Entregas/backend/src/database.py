@@ -130,8 +130,8 @@ def generar_horarios_actividades(fecha_inicio: str, fecha_fin: str):
         fecha_actual += timedelta(days=1)
     conn.commit()
 
-# Generar datos desde el 1 al 30 de octubre de 2025
-generar_horarios_actividades("2025-10-01", "2025-10-30")
+# Generar datos desde el 1 de octubre al 20 de diciembre de 2025
+generar_horarios_actividades("2025-10-01", "2025-12-20")
 
 
 print("Base de datos generada con horarios desde 9:00 a 17:30 y cupos por actividad actualizados.")
