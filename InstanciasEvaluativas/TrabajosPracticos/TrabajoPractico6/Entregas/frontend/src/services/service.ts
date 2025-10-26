@@ -1,13 +1,8 @@
 import { ActivitiesDetailResponse, Activity } from "../types/registration";
-
-const baseURL = import.meta.env.PROD
-  ? import.meta.env.VITE_BACKEND_URL 
-  : "/api"  ; 
-
-console.log("🌍 BaseURL usada por el front:", baseURL);
+const apiUrl = import.meta.env.VITE_BACKEND_URL;
 
 export const obtenerActividades = async (): Promise<Activity[]> => {
-  const response = await fetch(`${baseURL}/actividades`);
+  const response = await fetch(`${apiUrl}/actividades`);
   const data = await response.json();
   return data.actividades;
 };
@@ -15,12 +10,12 @@ export const obtenerActividades = async (): Promise<Activity[]> => {
 export const obtenerDetalleActividad = async (
   id: string
 ): Promise<ActivitiesDetailResponse> => {
-  const response = await fetch(`${baseURL}/actividad/${id}`);
+  const response = await fetch(`${apiUrl}/actividad/${id}`);
   return await response.json();
 };
 
 export const inscribirActividad = async (body: any) => {
-  const response = await fetch(`${baseURL}/inscripcion`, {
+  const response = await fetch(`${apiUrl}/inscripcion`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body),
